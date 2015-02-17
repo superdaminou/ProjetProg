@@ -7,8 +7,9 @@
 
 
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+
 /** Grid dimension */
 #define GRID_SIDE 4
 
@@ -40,7 +41,6 @@ typedef unsigned int tile;
  * \brief List of accepted movement in the game
  */
 typedef enum dir_e {UP,LEFT,DOWN,RIGHT} dir;
-
 
 
 /**
