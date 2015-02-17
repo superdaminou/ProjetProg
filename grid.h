@@ -7,7 +7,8 @@
 
 
 #include <stdbool.h>
-
+#include <stdio.h>
+#include <stdlib.h>
 /** Grid dimension */
 #define GRID_SIDE 4
 
