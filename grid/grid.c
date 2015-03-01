@@ -13,7 +13,7 @@ grid new_grid ()
     assert(g!=NULL);
     for(int i=0;i<GRID_SIDE;i++)
     {
-        for(int j=0;i<GRID_SIDE;i++)
+        for(int j=0;j<GRID_SIDE;j++)
         {
             tile t=0;
             g->t_grid[i][j]=t;
@@ -26,54 +26,51 @@ grid new_grid ()
 
 void delete_grid (grid g)
 {
-  //free(g->t_grid); pas besoin t_grid est un tableau statique
-  free(g);
+    //free(g->grid); inutile dans le cadre d'un tableau statique
+    free(g);
 }
-
 
 
 void copy_grid (grid src, grid dst)
 {
-  for(int i=0;i<GRID_SIDE;i++)
-      {
-	    for(int j=0;i<GRID_SIDE;i++)
-	      dst->t_grid[i][j]= src->t_grid[i][j];
-      }
-  dst->score=src->score;
+    for(int i=0;i<GRID_SIDE;i++)
+    {
+        for(int j=0;j<GRID_SIDE;j++)
+            dst->t_grid[i][j]= src->t_grid[i][j];
+    }
+    dst->score=src->score;
 }
 
 
 
 unsigned long int grid_score (grid g)
 {
-  return g->score;
+    return g->score;
 }
 
 
- tile get_tile (grid g, int x, int y) //A finir
-{
-   assert((0<=x && x<GRID_SIDE)&&(0<= y && y<GRID_SIDE)); //attention au condition 0<x<10 n'existe pas il faut faire 0<x && x<10
-   if(g->t_grid[x][y])
-     return NULL;   // a revoir et le precedent return vide n'exite pas car vide ne signifie rien
-   else
-     return 2*i;  //que signifie i?
- }
+tile get_tile (grid g, int x, int y){
+    assert((0<=x && x<GRID_SIDE)&&(0<=y && x<GRID_SIDE));
+    if(g->t_grid[x][y])
+        return vide;//pourquoi vide
+    else
+        return 2*i;//i n'existe pas
+}
 
 
- void set_tile (grid g, int x, int y, tile t){
-   g->t_grid[x][y]=t;
- }
-   
-   
+void set_tile (grid g, int x, int y, tile t){
+    g->t_grid[x][y]=t;
+}
+
+
 bool can_move (grid g, dir d){
-
-  switch(d)
-    {
     
+    switch(d){
+            
         case UP:
             for(int i=0;i<GRID_SIDE;i++)
             {
-                for(int j=1;i<GRID_SIDE;j++)
+                for(int j=1;j<GRID_SIDE;j++)
                 {
                     if((g->t_grid[i][j]==g->t_grid[i][j-1])||(g->t_grid[i][j-1]=0))
                     {
@@ -82,83 +79,167 @@ bool can_move (grid g, dir d){
                 }
             }
             break;
-    
+            
         case LEFT:
             for(int i=1;i<GRID_SIDE;i++)
             {
-                for(int j=0;i<GRID_SIDE;j++)
-                {
-                    if((g->t_grid[i][j]==g->t_grid[i-1][j])||(g->t_grid[i-1][j-1]=0))
-                    {
+                for(int j=0;j<GRID_SIDE;j++){
+                    if((g->t_grid[i][j]==g->t_grid[i-1][j])||(g->t_grid[i-1][j]=0)){
                         return true;
                     }
                 }
             }
             break;
-      
+            
         case DOWN:
             for(int i=0;i<GRID_SIDE;i++)
             {
-                for(int j=0;i<GRID_SIDE-1;j++)
-                {
-                    if((g->t_grid[i][j]==g->t_grid[i][j+1])||(g->t_grid[i-1][j+1]=0))
-                    {
+                for(int j=0;j<GRID_SIDE-1;j++){
+                    if((g->t_grid[i][j]==g->t_grid[i][j+1])||(g->t_grid[i][j+1]=0)){
                         return true;
                     }
                 }
             }
             break;
+            
         case RIGHT:
-            for(int i=1;i<GRID_SIDE;i++)
+            for(int i=0;i<GRID_SIDE-1;i++)
             {
-                for(int j=0;i<GRID_SIDE;j++)
-                {
-                    if((g->t_grid[i][j]==g->t_grid[i+1][j])||(g->t_grid[i+1][j-1]=0))
-                    {
+                for(int j=0;j<GRID_SIDE;j++){
+                    if((g->t_grid[i][j]==g->t_grid[i+1][j])||(g->t_grid[i+1][j]=0)){
                         return true;
+                        
                     }
                 }
             }
             break;
     }
-  
-  return false;
-  
+    
+    return false;
+    
 }
 
 
- bool game_over (grid g)   // A revoir
- {
-   switch(d) // d? il n'existe pas pour le moment
-     {
-         case UP:
-             if (can_move (g,d))
-                 return false;
-             break;
-         case DOWN:
-             if (can_move (g,d))
-                 return false;
-             break;
-         case LEFT:
-             if (can_move (g,d))
-                 return false;
-             break;
-         case RIGHT:
-             if (can_move (g,d))
-                 return false;
-             break;
-     }
-return true;
- }
-   
-
-
-void do_move (grid g, dir d){    //A finir
-  assert(can_move(g,d)==true);
+bool game_over (grid g)
+{
+    
+    if (can_move (g,UP))
+        return  false;
+    if (can_move (g,DOWN))
+        return false;
+    if (can_move (g,LEFT))
+        return false;
+    if (can_move (g,RIGHT))
+        return false;
+    return true;
 }
 
-
- void add_tile (grid g);
-
-
- void play (grid g, dir d);
+    
+    
+    
+    
+    void do_move (grid g, dir d)
+    {
+        assert(can_move(g,d)==true);
+        switch(d){
+            case UP:
+                for(int i=0;i<GRID_SIDE;i++)
+                {
+                    for(int j=0;j<GRID_SIDE;j++){
+                        if(g->t_grid[i][j]!=0)
+                        {
+                            if(g->t_grid[i][j-1]==0)
+                            {
+                                g->t_grid[i][j-1]=g->t_grid[i][j];
+                                g->t_grid[i][j]=0;
+                            }
+                            if (g->t_grid[i][j]==g->t_grid[i][j-1])
+                            {
+                                g->t_grid[i][j-1]+=g->t_grid[i][j];
+                                g->t_grid[i][j]=0;
+                            }
+                        }
+                    }
+                }
+                break;
+                
+            case LEFT:
+                for(int i=1;i<GRID_SIDE;i++)
+                {
+                    for(int j=0;j<GRID_SIDE;j++)
+                    {
+                        if(g->t_grid[i][j]!=0)
+                        {
+                            if(g->t_grid[i-1][j]==0)
+                            {
+                                g->t_grid[i-1][j]=g->t_grid[i][j];
+                                g->t_grid[i][j]=0;
+                            }
+                            if (g->t_grid[i-1][j]==g->t_grid[i][j])
+                            {
+                                g->t_grid[i-1][j]+=g->t_grid[i][j];
+                                g->t_grid[i][j]=0;
+                            }}
+                    }
+                    
+                }
+                break;
+                
+            case DOWN:
+                for(int i=0;i<GRID_SIDE;i++)
+                {
+                    for(int	j=0;j<GRID_SIDE-1;j++)
+                    {
+                        if(g->t_grid[i][j]!=0)
+                        {
+                            if(g->t_grid[i][j+1]==0)
+                            {
+                                g->t_grid[i][j+1]=g->t_grid[i][j];
+                                g->t_grid[i][j]=0;
+                            }
+                            if (g->t_grid[i][j]==g->t_grid[i][j+1])
+                            {
+                                g->t_grid[i][j+1]+=g->t_grid[i][j];
+                                g->t_grid[i][j]=0;
+                            }
+                            
+                        }
+                    }
+                }
+                break;
+                
+            case RIGHT:
+                for(int i=1;i<GRID_SIDE-1;i++)
+                {
+                    for(int j=0;j<GRID_SIDE;j++)
+                    {
+                        if(g->t_grid[i][j]!=0)
+                        {
+                            if(g->t_grid[i+1][j]==0)
+                            {
+                                g->t_grid[i+1][j]=g->t_grid[i][j];
+                                g->t_grid[i][j]=0;
+                            }
+                            if (g->t_grid[i][j]==g->t_grid[i+1][j])
+                            {
+                                g->t_grid[i][j+1]+=g->t_grid[i][j];
+                                g->t_grid[i][j]=0;
+                            }
+                        }
+                    }
+                }
+        }
+    }
+    
+        
+        void add_tile (grid g);// a faire
+        
+        
+        void play (grid g, dir d)
+    {
+            add_tile(g);
+            if(game_over(g)==false)
+                if(can_move (g,d)==true)
+                    do_move (g,d);
+            
+        }
