@@ -1,3 +1,3 @@
-add_executable(magasin grid.c)
+add_executable(grid grid.c)
 
-target_link_libraries(magasin m)
+target_link_libraries(grid m)

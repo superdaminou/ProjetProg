@@ -1,5 +1,6 @@
 #ifndef _GRILLE_H_
 #define _GRILLE_H_
+
 /**
  * \file grid.h
  * \brief Contains structures and functions needed to play 2048 game.
@@ -10,13 +11,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
+#include <time.h>
 
 /** Grid dimension */
 #define GRID_SIDE 4
 
 
 /**
- * \brief Contain game's status: tiles and current score.
+ * \brief Grid is a struct which contains game's status : tiles and current score.
  *
  *		        X
  *               0  1    ... GRID_SIDE-1
@@ -30,11 +32,14 @@
  *		|  |  |  ...  |  | GRID_SIDE-1
  *		+--+--+- ... -+--+
  */
+
+
 typedef struct grid_s* grid;
 
 /**
  * \brief Log_2-encoded tile : 0 is empty, i is 2**i.
  */
+
 typedef unsigned int tile;
 
 
@@ -57,7 +62,7 @@ grid new_grid ();
 void delete_grid (grid g);
 
 /**
- * \brief Clone the grid
+ * \Clone the grid
  * \param src the grid to copy
  * \param dst the copied grid
  */
