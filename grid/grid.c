@@ -131,8 +131,9 @@ void do_move (grid g, dir d) {
 		  }
 		if (a-1>= 0 && get_tile(g,i,a-1)==get_tile(g,i,a))
 		{
-		set_tile(g,i,a-1,get_tile(g,i,a)*2);
+		set_tile(g,i,a-1,get_tile(g,i,a)+1);
 		set_tile(g,i,a,0);
+		g->score+=get_tile(g,i,a);
 		}
 	    }
 	  }
@@ -145,8 +146,10 @@ void do_move (grid g, dir d) {
       {
       for (int j = 0 ; j < GRID_SIDE ; j++)
 	{
+	if (get_tile(g,i,j)!=0){
 	  a=i;
-		while(a-1 !=0 && get_tile(g,a-1,j)==0)
+
+		while(a-1 >=0 && get_tile(g,a-1,j)==0)
 	        {
 		  set_tile(g,a-1,j,get_tile(g,a,j));
 		   set_tile(g,a,j,0);
@@ -154,9 +157,11 @@ void do_move (grid g, dir d) {
 	        }
 		if (a-1 >=0 && get_tile(g,a-1,j)==get_tile(g,a,j))
 		{
-		set_tile(g,a-1,j,get_tile(g,a,j)*2);
+		set_tile(g,a-1,j,get_tile(g,a,j)+1);
 		set_tile(g,a,j,0);
+		g->score+=get_tile(g,a,j);
 		}
+}
 	}
       } 
     
@@ -167,29 +172,33 @@ void do_move (grid g, dir d) {
 	
 	for (int j = GRID_SIDE-2 ; j >= 0 ; j--)
 	  {
+	if (get_tile(g,i,j)!=0){
 	    a=j;
-	    	while(a+1 !=GRID_SIDE && get_tile(g,i,a+1)==0)
+	    	while(a+1 <GRID_SIDE && get_tile(g,i,a+1)==0)
 	        {
-		  set_tile(g,i,j+1,get_tile(g,i,a));
+		  set_tile(g,i,a+1,get_tile(g,i,a));
 		   set_tile(g,i,a,0);
 		   a+=1;
 		   
 	        }
 		if (j+1 < GRID_SIDE && get_tile(g,i,a+1)==get_tile(g,i,a))
 		{
-		set_tile(g,i,a+1,get_tile(g,i,a)*2);
+		set_tile(g,i,a+1,get_tile(g,i,a)+1);
 		set_tile(g,i,a,0);
+		g->score+=get_tile(g,i,a);
 		}
+}
 	     }
 	  }
       
     break;
                 
   case RIGHT:
-    for (int i = GRID_SIDE-2 ; i > 0 ; i--)
+    for (int i = GRID_SIDE-2 ; i >= 0 ; i--)
       {
 	for (int j = 0 ; j < GRID_SIDE ; j++)
 	  {
+	if (get_tile(g,i,j)!=0){
 	    a=i;
 	    	while(a+1 < GRID_SIDE && get_tile(g,a+1,j)==0)
 	        {
@@ -199,9 +208,11 @@ void do_move (grid g, dir d) {
 	        }
 		if (a+1 <GRID_SIDE &&  get_tile(g,a+1,j)==get_tile(g,a,j))
 		{
-		set_tile(g,a+1,j,get_tile(g,a,j)*2);
+		set_tile(g,a+1,j,get_tile(g,a,j)+1);
 		set_tile(g,a,j,0);
+		g->score+=get_tile(g,a,j);
 		}
+}
 	}
       }
   }
@@ -262,9 +273,9 @@ void play (grid g, dir d) {
 
 void display (grid g) {
   printf("\nScore : %d\n", g->score);
-  for (int i = 0 ; i < GRID_SIDE ; i++) {
+  for (int j = 0 ; j < GRID_SIDE ; j++) {
     printf("\n");
-    for (int j = 0 ; j < GRID_SIDE ; j++) {
+    for (int i = 0 ; i < GRID_SIDE ; i++) {
       if (g->t_grid[i][j] == 0)
 	printf(" . ");
       else {
