@@ -81,8 +81,10 @@ bool can_move (grid g, dir d) {
     break;
     
   case RIGHT:
-    for(int i = 0 ; i < GRID_SIDE-1 ; i++) {
-	for(int j = 0 ; j < GRID_SIDE ; j++){
+    for(int i = 0 ; i < GRID_SIDE-1 ; i++)
+      {
+	for(int j = 0 ; j < GRID_SIDE ; j++)
+	  {
 	  if(g->t_grid[i][j] == g->t_grid[i+1][j] || g->t_grid[i+1][j] == 0)
 	    return true;
 	}
@@ -113,81 +115,94 @@ void do_move (grid g, dir d) {
   assert(can_move(g,d));
 
   switch(d) {
+    int a=0;
   case UP:
-    for (int i = 0 ; i < GRID_SIDE ; i++) {
-	for (int j = 0 ; j < GRID_SIDE ; j++) {
-	  if (g->t_grid[i][j] != 0) {
-	    if(g->t_grid[i][j-1] == 0) {
-	      g->t_grid[i][j-1] = g->t_grid[i][j];
-	      g->t_grid[i][j] = 0;
-	    }
-	    if (g->t_grid[i][j] == g->t_grid[i][j-1]) {
-	      g->t_grid[i][j-1] += g->t_grid[i][j];
-	      g->t_grid[i][j] = 0;
+    for (int i = 0 ; i < GRID_SIDE ; i++)
+      {
+	for (int j = 1 ; j < GRID_SIDE ; j++)
+	  {
+	    if (get_tile(g,i,j)!=0){
+	    a=j;
+		while(a-1 >=0 && get_tile(g,i,a-1)==0)
+		  {
+		    set_tile(g,i,a-1,get_tile(g,i,a));
+		   set_tile(g,i,a,0);
+		   a-=1;
+		  }
+		if (a-1>= 0 && get_tile(g,i,a-1)==get_tile(g,i,a))
+		{
+		set_tile(g,i,a-1,get_tile(g,i,a)*2);
+		set_tile(g,i,a,0);
+		}
 	    }
 	  }
-	}
-    }
+      }
+    
     break;
                 
   case LEFT:
-    for (int i = 1 ; i < GRID_SIDE ; i++) {
-      for (int j = 0 ; j < GRID_SIDE ; j++) {
-	if (g->t_grid[i][j] != 0) {
-	  if(g->t_grid[i-1][j] == 0) {
-	    g->t_grid[i-1][j] = g->t_grid[i][j];
-	    g->t_grid[i][j] = 0;
-	  }
-	  if (g->t_grid[i-1][j] == g->t_grid[i][j]) {
-	    g->t_grid[i-1][j] += g->t_grid[i][j];
-	    g->t_grid[i][j] = 0;
-	  }
+    for (int i = 1 ; i < GRID_SIDE ; i++) 
+      {
+      for (int j = 0 ; j < GRID_SIDE ; j++)
+	{
+	  a=i;
+		while(a-1 !=0 && get_tile(g,a-1,j)==0)
+	        {
+		  set_tile(g,a-1,j,get_tile(g,a,j));
+		   set_tile(g,a,j,0);
+		   a-=1;
+	        }
+		if (a-1 >=0 && get_tile(g,a-1,j)==get_tile(g,a,j))
+		{
+		set_tile(g,a-1,j,get_tile(g,a,j)*2);
+		set_tile(g,a,j,0);
+		}
 	}
       } 
-    }
+    
     break;
                 
-  case DOWN:
-    for (int i = 0 ; i < GRID_SIDE ; i++)
+  case DOWN:    for (int i = 0 ; i < GRID_SIDE ; i++)
       {
-	for (int j = 0 ; j < GRID_SIDE-1 ; j++)
+	
+	for (int j = GRID_SIDE-2 ; j >= 0 ; j--)
 	  {
-	    if (g->t_grid[i][j] != 0)
-	      {
-		if (g->t_grid[i][j+1] == 0)
-		  {
-		    g->t_grid[i][j+1] = g->t_grid[i][j];
-		    g->t_grid[i][j] = 0;
-		  }
-		if (g->t_grid[i][j] == g->t_grid[i][j+1])
-		  {
-		    g->t_grid[i][j+1] += g->t_grid[i][j];
-		    g->t_grid[i][j] = 0;
-		  }
-	      }
+	    a=j;
+	    	while(a+1 !=GRID_SIDE && get_tile(g,i,a+1)==0)
+	        {
+		  set_tile(g,i,j+1,get_tile(g,i,a));
+		   set_tile(g,i,a,0);
+		   a+=1;
+		   
+	        }
+		if (j+1 < GRID_SIDE && get_tile(g,i,a+1)==get_tile(g,i,a))
+		{
+		set_tile(g,i,a+1,get_tile(g,i,a)*2);
+		set_tile(g,i,a,0);
+		}
+	     }
 	  }
-      }
+      
     break;
                 
   case RIGHT:
-    for (int i = 1 ; i < GRID_SIDE-1 ; i++)
+    for (int i = GRID_SIDE-2 ; i > 0 ; i--)
       {
 	for (int j = 0 ; j < GRID_SIDE ; j++)
 	  {
-	    if (g->t_grid[i][j] != 0)
-	      {
-		if (g->t_grid[i+1][j] == 0)
-		  {
-		    g->t_grid[i+1][j] = g->t_grid[i][j];
-		    g->t_grid[i][j] = 0;
-		  }
-		if (g->t_grid[i][j] == g->t_grid[i+1][j])
-		  {
-		    g->t_grid[i][j+1] += g->t_grid[i][j];
-		    g->t_grid[i][j] = 0;
-		  }
-	      }
-	  }
+	    a=i;
+	    	while(a+1 < GRID_SIDE && get_tile(g,a+1,j)==0)
+	        {
+		  set_tile(g,a+1,j,get_tile(g,a,j));
+		   set_tile(g,a,j,0);
+		   a+=1;
+	        }
+		if (a+1 <GRID_SIDE &&  get_tile(g,a+1,j)==get_tile(g,a,j))
+		{
+		set_tile(g,a+1,j,get_tile(g,a,j)*2);
+		set_tile(g,a,j,0);
+		}
+	}
       }
   }
 }
