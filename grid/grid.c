@@ -105,7 +105,9 @@ bool game_over (grid g) {
         return false;
     return true;
 }
-    
+
+
+// Réécrire do_move : ne marche pas dans la plupart des cas
     
 void do_move (grid g, dir d) {
   assert(can_move(g,d));
@@ -207,8 +209,7 @@ static int count_empty (grid g) {
 
 /* Cette fonction ajoute aléatoirement une tuile à la grille dans une case vide (avec la probabilité 4 : 1/10 et 2 : 9/10)
  * La méthode consiste à compter le nombre n de cases vides, prendre un nombre aléatoire k entre 0 et n puis placer 
- * la tuile à la kème case vide 
- * NB : ALEATOIRE A AMELIORER */
+ * la tuile à la k-ème case vide */
 
         
 void add_tile (grid g) {
@@ -267,8 +268,36 @@ int main() {
   add_tile(g);
   display(g);
 
-  
-  
+  while (!game_over(g)) {
+
+    char c;
+    dir d;
+    scanf("%c", &c);
+
+    switch(c) {
+    case 'h':
+      d = UP;
+      break;
+      
+    case 'b':
+      d = DOWN;
+      break;
+
+    case 'g':
+      d = LEFT;
+      break;
+
+    case 'd':
+      d = RIGHT;
+      break;
+    }
+    
+    play(g, d);
+    display(g);
+  }
+
+  printf("Score final : %d\n", g->score);
+ 
   return EXIT_SUCCESS;
 }
   
