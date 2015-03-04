@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <time.h>
+#include <math.h>
 
 /** Grid dimension */
 #define GRID_SIDE 4

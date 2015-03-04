@@ -218,7 +218,7 @@ void add_tile (grid g) {
   if (n == 0)
     return;
 
-  int val = (rand()%10 == 0)?4:2;
+  int val = (rand()%10 == 0)?2:1;
   int k = rand()%n;
 
   for (int i = 0 ; i < GRID_SIDE ; i++) {
@@ -252,8 +252,10 @@ void display (grid g) {
     for (int j = 0 ; j < GRID_SIDE ; j++) {
       if (g->t_grid[i][j] == 0)
 	printf(" . ");
-      else
-        printf(" %u ", (unsigned int) g->t_grid[i][j]);
+      else {
+	unsigned int n = (unsigned int) g->t_grid[i][j];
+        printf(" %u ", (unsigned int) pow(2,n));
+      }
     }
   }
   printf("\n\n");
@@ -277,27 +279,31 @@ int main() {
     switch(c) {
     case 'h':
       d = UP;
+      play(g, d);
+      display(g);
       break;
       
     case 'b':
       d = DOWN;
+      play(g, d);
+      display(g);
       break;
 
     case 'g':
       d = LEFT;
+      play(g, d);
+      display(g);
       break;
 
     case 'd':
       d = RIGHT;
+      play(g, d);
+      display(g);
       break;
     }
-    
-    play(g, d);
-    display(g);
   }
 
   printf("Score final : %d\n", g->score);
  
   return EXIT_SUCCESS;
 }
-  
