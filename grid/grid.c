@@ -133,7 +133,7 @@ void do_move (grid g, dir d) {
 		{
 		set_tile(g,i,a-1,get_tile(g,i,a)+1);
 		set_tile(g,i,a,0);
-		g->score+=get_tile(g,i,a);
+		g->score+=pow(2,get_tile(g,i,a-1));
 		}
 	    }
 	  }
@@ -152,14 +152,14 @@ void do_move (grid g, dir d) {
 		while(a-1 >=0 && get_tile(g,a-1,j)==0)
 	        {
 		  set_tile(g,a-1,j,get_tile(g,a,j));
-		   set_tile(g,a,j,0);
+		  set_tile(g,a,j,0);
 		   a-=1;
 	        }
 		if (a-1 >=0 && get_tile(g,a-1,j)==get_tile(g,a,j))
 		{
 		set_tile(g,a-1,j,get_tile(g,a,j)+1);
 		set_tile(g,a,j,0);
-		g->score+=get_tile(g,a,j);
+		g->score+=pow(2,get_tile(g,a-1,j));
 		}
 }
 	}
@@ -185,7 +185,7 @@ void do_move (grid g, dir d) {
 		{
 		set_tile(g,i,a+1,get_tile(g,i,a)+1);
 		set_tile(g,i,a,0);
-		g->score+=get_tile(g,i,a);
+		g->score+=pow(2,get_tile(g,i,a+1));
 		}
 }
 	     }
@@ -210,7 +210,7 @@ void do_move (grid g, dir d) {
 		{
 		set_tile(g,a+1,j,get_tile(g,a,j)+1);
 		set_tile(g,a,j,0);
-		g->score+=get_tile(g,a,j);
+		g->score+=pow(2,get_tile(g,a+1,j));
 		}
 }
 	}
@@ -303,19 +303,19 @@ int main() {
     scanf("%c", &c);
 
     switch(c) {
-    case 'h':
+    case 'z':
       d = UP;
       play(g, d);
       display(g);
       break;
       
-    case 'b':
+    case 's':
       d = DOWN;
       play(g, d);
       display(g);
       break;
 
-    case 'g':
+    case 'q':
       d = LEFT;
       play(g, d);
       display(g);
