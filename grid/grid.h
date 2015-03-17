@@ -75,7 +75,6 @@ void copy_grid (grid src, grid dst);
  */
 unsigned long int grid_score (grid g);
 
-
 /**
  * \brief Get tile  (log_2-encoded) from the grid by specifying his coordinates
  * \param g the grid

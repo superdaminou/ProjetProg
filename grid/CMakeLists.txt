@@ -1,3 +1,3 @@
-add_executable(grid grid.c)
+add_executable(play play.c grid.c)
 
-target_link_libraries(grid m)
+target_link_libraries(play m)

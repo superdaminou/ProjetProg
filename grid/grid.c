@@ -49,53 +49,6 @@ void set_tile (grid g, int x, int y, tile t) {
     g->t_grid[x][y] = t;
 }
 
-
-
-/*bool can_move (grid g, dir d) {
-  switch(d) {
-    
-  case UP:
-    for(int i = 0 ; i < GRID_SIDE ; i++) {
-	for(int j = 1 ; j < GRID_SIDE ; j++) {
-	    if(g->t_grid[i][j] == g->t_grid[i][j-1] || g->t_grid[i][j-1] == 0)
-	      return true;
-	}
-    }
-    break;
-
-  case DOWN:
-    for(int i = 0 ; i < GRID_SIDE ; i++) {
-	for(int j = 0 ; j < GRID_SIDE-1 ; j++) {
-	  if(g->t_grid[i][j] == g->t_grid[i][j+1] || g->t_grid[i][j+1] == 0)
-	    return true;
-	}
-    }
-    break;
-    
-  case LEFT:
-    for(int i = 1 ; i < GRID_SIDE ; i++) {
-	for(int j = 0 ; j < GRID_SIDE ; j++) {
-	  if(g->t_grid[i][j] == g->t_grid[i-1][j] || g->t_grid[i-1][j] == 0)
-	    return true;
-	}
-    }
-    break;
-    
-  case RIGHT:
-    for(int i = 0 ; i < GRID_SIDE-1 ; i++)
-      {
-	for(int j = 0 ; j < GRID_SIDE ; j++)
-	  {
-	  if(g->t_grid[i][j] == g->t_grid[i+1][j] || g->t_grid[i+1][j] == 0)
-	    return true;
-	}
-    }
-    break;
-  }
-    
-  return false;
-  }*/
-
 static bool masque_can_move (grid g, int imin, int imax, int jmin, int jmax, int i1, int j1) {
   for (int i = imin ; i < imax ; i++) {
     for (int j = jmin ; j < jmax ; j++) {
@@ -110,19 +63,19 @@ bool can_move (grid g, dir d) {
   switch(d) {
 
   case UP:
-    return masque_can_move(g, 0, GRID_SIDE, 1, GRID_SIZE, 0, -1);
+    return masque_can_move(g, 0, GRID_SIDE, 1, GRID_SIDE, 0, -1);
     break;
 
   case DOWN:
-    return masque_can_move(g, 0, GRID_SIDE, 0, GRID_SIZE-1, 0, 1);
+    return masque_can_move(g, 0, GRID_SIDE, 0, GRID_SIDE-1, 0, 1);
     break;
 
   case LEFT:
-    return masque_can_move(g, 1, GRID_SIDE, 0, GRID_SIZE, -1, 0);
+    return masque_can_move(g, 1, GRID_SIDE, 0, GRID_SIDE, -1, 0);
     break;
 
-  case UP:
-    return masque_can_move(g, 0, GRID_SIDE-1, 0, GRID_SIZE, 1, 0);
+  case RIGHT:
+    return masque_can_move(g, 0, GRID_SIDE-1, 0, GRID_SIDE, 1, 0);
     break;
 
   default:
@@ -143,7 +96,17 @@ bool game_over (grid g) {
 }
 
 
-// Réécrire do_move : ne marche pas dans la plupart des cas
+// Réécrire do_move + masquage
+
+/*
+static void masquage_do_move (g, imin, imax, jmin, jmax, i1, j1, i2, j2) {
+  int a = 0
+  for (int i = imin ; i < imax ; i++) {
+    for (int j = jmin ; j < jmax ; j++) {
+      if (get_tile(g,i,j) != 0) {
+	a = j;
+	while (*/
+	
     
 void do_move (grid g, dir d) {
   assert(can_move(g,d));
@@ -297,71 +260,12 @@ void add_tile (grid g) {
                     
 void play (grid g, dir d) {
   if(can_move (g,d)) {
-    do_move (g,d); 
+    do_move(g,d); 
     add_tile(g);
   }
 }
 
-// Affichage de la grille et du score (version basique à améliorer)
-
-void display (grid g) {
-  printf("\nScore : %d\n", g->score);
-  for (int j = 0 ; j < GRID_SIDE ; j++) {
-    printf("\n");
-    for (int i = 0 ; i < GRID_SIDE ; i++) {
-      if (g->t_grid[i][j] == 0)
-	printf(" . ");
-      else {
-	unsigned int n = (unsigned int) g->t_grid[i][j];
-        printf(" %u ", (unsigned int) pow(2,n));
-      }
-    }
-  }
-  printf("\n\n");
-}
-
-int main() {
-  srand(time(NULL)); // Initialisation de rand
-
-  grid g = new_grid();
+void playbis (grid g, dir d) {
+  do_move(g,d);
   add_tile(g);
-  add_tile(g);
-  display(g);
-
-  while (!game_over(g)) {
-
-    char c;
-    dir d;
-    scanf("%c", &c);
-
-    switch(c) {
-    case 'z':
-      d = UP;
-      play(g, d);
-      display(g);
-      break;
-      
-    case 's':
-      d = DOWN;
-      play(g, d);
-      display(g);
-      break;
-
-    case 'q':
-      d = LEFT;
-      play(g, d);
-      display(g);
-      break;
-
-    case 'd':
-      d = RIGHT;
-      play(g, d);
-      display(g);
-      break;
-    }
-  }
-
-  printf("Score final : %d\n", g->score);
- 
-  return EXIT_SUCCESS;
 }
