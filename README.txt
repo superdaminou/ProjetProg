@@ -15,15 +15,15 @@ grid					Directory
 
 II. How to build your project and play ?
 
-CMake is used to build this project.
-Place yourself in the PROJECT ROOT and run theses instructions to create Makefiles :
+CMake is used to build this project. Build directory will contain your executables.
+Place yourself in the PROJECT ROOT and run theses instructions to generate Makefiles :
 
 - mkdir build
 - cd build
 - cmake ..
 
 
-By now Makefiles should be created. Then, to build executables :
+By now Makefiles should be created. Then, to create executables :
 
 - make
 
