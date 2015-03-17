@@ -49,11 +49,14 @@ void set_tile (grid g, int x, int y, tile t) {
     g->t_grid[x][y] = t;
 }
 
-static bool masque_can_move (grid g, int imin, int imax, int jmin, int jmax, int i1, int j1) {
-  for (int i = imin ; i < imax ; i++) {
-    for (int j = jmin ; j < jmax ; j++) {
+static bool masque_can_move (grid g, int imin, int imax, int jmin, int jmax, int i1, int j1)
+{
+  for (int i = imin ; i < imax ; i++)
+  {
+    for (int j = jmin ; j < jmax ; j++)
+    {
       if(g->t_grid[i][j] == g->t_grid[i+i1][j+j1] || g->t_grid[i+i1][j+j1] == 0)
-	return true;
+          return true;
     }
   }
   return false;
@@ -108,58 +111,61 @@ static void masquage_do_move (g, imin, imax, jmin, jmax, i1, j1, i2, j2) {
 	while (*/
 	
     
-void do_move (grid g, dir d) {
+void do_move (grid g, dir d)
+{
   assert(can_move(g,d));
 
-  switch(d) {
+  switch(d)
+    {
     int a=0;
-  case UP:
-    for (int i = 0 ; i < GRID_SIDE ; i++)
-      {
-	for (int j = 1 ; j < GRID_SIDE ; j++)
-	  {
-	    if (get_tile(g,i,j)!=0){
-	    a=j;
-		while(a-1 >=0 && get_tile(g,i,a-1)==0)
-		  {
-		    set_tile(g,i,a-1,get_tile(g,i,a));
-		   set_tile(g,i,a,0);
-		   a-=1;
-		  }
-		if (a-1>= 0 && get_tile(g,i,a-1)==get_tile(g,i,a))
-		{
-		set_tile(g,i,a-1,get_tile(g,i,a)+1);
-		set_tile(g,i,a,0);
-		g->score+=pow(2,get_tile(g,i,a-1));
-		}
-	    }
-	  }
-      }
+    case UP:
+            for (int i = 0 ; i < GRID_SIDE ; i++)
+            {
+                for (int j = 1 ; j < GRID_SIDE ; j++)
+                {
+                    if (get_tile(g,i,j)!=0)
+                    {
+                        a=j;
+                        while(a-1 >=0 && get_tile(g,i,a-1)==0)
+                        {
+                            set_tile(g,i,a-1,get_tile(g,i,a));
+                            set_tile(g,i,a,0);
+                            a-=1;
+                        }
+                        if (a-1>= 0 && get_tile(g,i,a-1)==get_tile(g,i,a))
+                        {
+                            set_tile(g,i,a-1,get_tile(g,i,a)+1);
+                            set_tile(g,i,a,0);
+                            g->score+=pow(2,get_tile(g,i,a-1));
+                        }
+                    }
+                }
+            }
     
-    break;
+            break;
                 
   case LEFT:
     for (int i = 1 ; i < GRID_SIDE ; i++) 
       {
-      for (int j = 0 ; j < GRID_SIDE ; j++)
-	{
-	if (get_tile(g,i,j)!=0){
-	  a=i;
-
-		while(a-1 >=0 && get_tile(g,a-1,j)==0)
-	        {
-		  set_tile(g,a-1,j,get_tile(g,a,j));
-		  set_tile(g,a,j,0);
-		   a-=1;
-	        }
-		if (a-1 >=0 && get_tile(g,a-1,j)==get_tile(g,a,j))
-		{
-		set_tile(g,a-1,j,get_tile(g,a,j)+1);
-		set_tile(g,a,j,0);
-		g->score+=pow(2,get_tile(g,a-1,j));
-		}
-}
-	}
+        for (int j = 0 ; j < GRID_SIDE ; j++)
+        {
+            if (get_tile(g,i,j)!=0)
+            {
+                a=i;
+                while(a-1 >=0 && get_tile(g,a-1,j)==0)
+                {
+                    set_tile(g,a-1,j,get_tile(g,a,j));
+                    set_tile(g,a,j,0);
+                    a-=1;
+                }
+                if (a-1 >=0 && get_tile(g,a-1,j)==get_tile(g,a,j))
+                {
+                    set_tile(g,a-1,j,get_tile(g,a,j)+1);
+                    set_tile(g,a,j,0);
+                    g->score+=pow(2,get_tile(g,a-1,j));
+                }
+            }
+        }
       } 
     
     break;
@@ -168,24 +174,24 @@ void do_move (grid g, dir d) {
     for (int i = 0 ; i < GRID_SIDE ; i++)
       {
 	
-	for (int j = GRID_SIDE-2 ; j >= 0 ; j--)
-	  {
-	if (get_tile(g,i,j)!=0){
-	    a=j;
-	    	while(a+1 <GRID_SIDE && get_tile(g,i,a+1)==0)
-	        {
-		  set_tile(g,i,a+1,get_tile(g,i,a));
-		   set_tile(g,i,a,0);
-		   a+=1;
-		   
-	        }
-		if (j+1 < GRID_SIDE && get_tile(g,i,a+1)==get_tile(g,i,a))
-		{
-		set_tile(g,i,a+1,get_tile(g,i,a)+1);
-		set_tile(g,i,a,0);
-		g->score+=pow(2,get_tile(g,i,a+1));
-		}
-}
+          for (int j = GRID_SIDE-2 ; j >= 0 ; j--)
+          {
+              if (get_tile(g,i,j)!=0)
+              {
+                  a=j;
+                  while(a+1 <GRID_SIDE && get_tile(g,i,a+1)==0)
+                  {
+                      set_tile(g,i,a+1,get_tile(g,i,a));
+                      set_tile(g,i,a,0);
+                      a+=1;
+                  }
+                  if (j+1 < GRID_SIDE && get_tile(g,i,a+1)==get_tile(g,i,a))
+                  {
+                      set_tile(g,i,a+1,get_tile(g,i,a)+1);
+                      set_tile(g,i,a,0);
+                      g->score+=pow(2,get_tile(g,i,a+1));
+                  }
+              }
 	     }
 	  }
       
@@ -194,26 +200,27 @@ void do_move (grid g, dir d) {
   case RIGHT:
     for (int i = GRID_SIDE-2 ; i >= 0 ; i--)
       {
-	for (int j = 0 ; j < GRID_SIDE ; j++)
-	  {
-	if (get_tile(g,i,j)!=0){
-	    a=i;
-	    	while(a+1 < GRID_SIDE && get_tile(g,a+1,j)==0)
-	        {
-		  set_tile(g,a+1,j,get_tile(g,a,j));
-		   set_tile(g,a,j,0);
-		   a+=1;
-	        }
-		if (a+1 <GRID_SIDE &&  get_tile(g,a+1,j)==get_tile(g,a,j))
-		{
-		set_tile(g,a+1,j,get_tile(g,a,j)+1);
-		set_tile(g,a,j,0);
-		g->score+=pow(2,get_tile(g,a+1,j));
-		}
-	}
-	  }
-      }
-  }
+          for (int j = 0 ; j < GRID_SIDE ; j++)
+          {
+              if (get_tile(g,i,j)!=0)
+              {
+                  a=i;
+                  while(a+1 < GRID_SIDE && get_tile(g,a+1,j)==0)
+                  {
+                      set_tile(g,a+1,j,get_tile(g,a,j));
+                      set_tile(g,a,j,0);
+                      a+=1;
+                  }
+                  if (a+1 <GRID_SIDE &&  get_tile(g,a+1,j)==get_tile(g,a,j))
+                  {
+                      set_tile(g,a+1,j,get_tile(g,a,j)+1);
+                      set_tile(g,a,j,0);
+                      g->score+=pow(2,get_tile(g,a+1,j));
+                  }
+              }
+          }
+        }
+    }
 }
     
 
@@ -222,10 +229,12 @@ void do_move (grid g, dir d) {
 static int count_empty (grid g) {
   int n = 0;
 
-  for (int i = 0 ; i < GRID_SIDE ; i++) {
-    for (int j = 0 ; j < GRID_SIDE ; j++) {
+  for (int i = 0 ; i < GRID_SIDE ; i++)
+  {
+    for (int j = 0 ; j < GRID_SIDE ; j++)
+    {
       if (g->t_grid[i][j] == 0)
-	n++;
+          n++;
     }
   }
   return n;
@@ -236,7 +245,8 @@ static int count_empty (grid g) {
  * la tuile à la k-ème case vide */
 
         
-void add_tile (grid g) {
+void add_tile (grid g)
+{
   int n = count_empty (g);
 
   if (n == 0)
@@ -245,14 +255,18 @@ void add_tile (grid g) {
   int val = (rand()%10 == 0)?2:1;
   int k = rand()%n;
 
-  for (int i = 0 ; i < GRID_SIDE ; i++) {
-    for (int j = 0 ; j < GRID_SIDE ; j++) {
-      if (g->t_grid[i][j] == 0) {
-	if (k == 0) {
-	  set_tile(g, i, j, val);
-	  return;
-	}
-	k--;
+  for (int i = 0 ; i < GRID_SIDE ; i++)
+  {
+    for (int j = 0 ; j < GRID_SIDE ; j++)
+    {
+      if (g->t_grid[i][j] == 0)
+      {
+          if (k == 0)
+          {
+              set_tile(g, i, j, val);
+              return;
+          }
+          k--;
       }
     }
   }

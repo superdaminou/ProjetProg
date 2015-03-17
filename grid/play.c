@@ -18,16 +18,19 @@ void display (grid g) {
   printf("\n\n");
 }
 
-void auto_play (grid g) {
+void auto_play (grid g)
+{
   dir t[] = {UP, DOWN, LEFT, RIGHT};
   int i = 0;
-  while (!game_over(g)) {
+  while (!game_over(g))
+  {
     i = rand()%4;
     play(g, t[i]);
   }
 }
 
-int main() {
+int main()
+{
   srand(time(NULL)); // Initialisation de rand
 
   grid g = new_grid();
@@ -35,7 +38,8 @@ int main() {
   add_tile(g);
   display(g);
 
-  while (!game_over(g)) {
+  while (!game_over(g))
+  {
 
     char c;
     dir d;
