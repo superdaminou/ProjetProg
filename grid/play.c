@@ -29,6 +29,12 @@ void auto_play (grid g)
   }
 }
 
+void facto_play (grid g, dir d) {
+  play(g, d);
+  display(g);
+}
+  
+
 int main()
 {
   srand(time(NULL)); // Initialisation de rand
@@ -52,27 +58,19 @@ int main()
       break;
 
     case 'z':
-      d = UP;
-      play(g, d);
-      display(g);
+      facto_play(g, UP);
       break;
       
     case 's':
-      d = DOWN;
-      play(g, d);
-      display(g);
+      facto_play(g, DOWN);
       break;
 
     case 'q':
-      d = LEFT;
-      play(g, d);
-      display(g);
+      facto_play(g, LEFT);
       break;
 
     case 'd':
-      d = RIGHT;
-      play(g, d);
-      display(g);
+      facto_play(g, RIGHT);
       break;
     }
   }

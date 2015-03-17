@@ -49,12 +49,9 @@ void set_tile (grid g, int x, int y, tile t) {
     g->t_grid[x][y] = t;
 }
 
-static bool masque_can_move (grid g, int imin, int imax, int jmin, int jmax, int i1, int j1)
-{
-  for (int i = imin ; i < imax ; i++)
-  {
-    for (int j = jmin ; j < jmax ; j++)
-    {
+static bool masque_can_move (grid g, int imin, int imax, int jmin, int jmax, int i1, int j1) {
+  for (int i = imin ; i < imax ; i++) {
+    for (int j = jmin ; j < jmax ; j++) {
       if(g->t_grid[i][j] == g->t_grid[i+i1][j+j1] || g->t_grid[i+i1][j+j1] == 0)
           return true;
     }
@@ -102,13 +99,14 @@ bool game_over (grid g) {
 // Réécrire do_move + masquage
 
 /*
-static void masquage_do_move (g, imin, imax, jmin, jmax, i1, j1, i2, j2) {
-  int a = 0
+static void masquage_do_move (g, imin, imax, jmin, jmax, a1, b1, a2, j2) {
   for (int i = imin ; i < imax ; i++) {
     for (int j = jmin ; j < jmax ; j++) {
       if (get_tile(g,i,j) != 0) {
 	a = j;
-	while (*/
+	while (a1 >= 0 && get_tile(g,i,a1) {
+	set_tile(g,i,a1,get_tile(g,i)*/
+	
 	
     
 void do_move (grid g, dir d)
@@ -117,7 +115,7 @@ void do_move (grid g, dir d)
 
   switch(d)
     {
-    int a=0;
+    int a = 0;
     case UP:
             for (int i = 0 ; i < GRID_SIDE ; i++)
             {
@@ -245,8 +243,7 @@ static int count_empty (grid g) {
  * la tuile à la k-ème case vide */
 
         
-void add_tile (grid g)
-{
+void add_tile (grid g) {
   int n = count_empty (g);
 
   if (n == 0)
@@ -255,16 +252,12 @@ void add_tile (grid g)
   int val = (rand()%10 == 0)?2:1;
   int k = rand()%n;
 
-  for (int i = 0 ; i < GRID_SIDE ; i++)
-  {
-    for (int j = 0 ; j < GRID_SIDE ; j++)
-    {
-      if (g->t_grid[i][j] == 0)
-      {
-          if (k == 0)
-          {
-              set_tile(g, i, j, val);
-              return;
+  for (int i = 0 ; i < GRID_SIDE ; i++) {
+    for (int j = 0 ; j < GRID_SIDE ; j++) {
+      if (g->t_grid[i][j] == 0) {
+          if (k == 0) {
+	    set_tile(g, i, j, val);
+	    return;
           }
           k--;
       }
