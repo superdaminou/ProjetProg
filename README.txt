@@ -38,10 +38,10 @@ To run all tests easily :
 
 If everything passed successfully, you can now play :
 
-- cd grid
 - ./play
 
 Use Z, Q, S, D to play. Good luck !
+Use A to generate a random session.
 
 
 
