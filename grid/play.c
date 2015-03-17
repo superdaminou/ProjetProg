@@ -2,19 +2,27 @@
 
 // Affichage de la grille et du score (version basique à améliorer)
 
+void display_separator() {
+  for (int i = 0 ; i < GRID_SIDE ; i++)
+    printf("+———————");
+  puts("+");
+}
+
 void display (grid g) {
-  printf("\nScore : %d\n", grid_score(g));
+  printf("\nScore : %d\n\n", grid_score(g));
   for (int j = 0 ; j < GRID_SIDE ; j++) {
-    printf("\n");
+    display_separator();
     for (int i = 0 ; i < GRID_SIDE ; i++) {
-      if (get_tile(g, i,j) == 0)
-	printf(" . ");
+      if (get_tile(g,i,j) == 0)
+	printf("|%4u   ", get_tile(g,i,j));
       else {
-	unsigned int n = (unsigned int) get_tile(g, i,j); // downcast pour affichage
-        printf(" %u ", (unsigned int) pow(2,n));
+	unsigned int n = (unsigned int) get_tile(g,i,j); // downcast pour affichage
+        printf("|%4u   ", (unsigned int) pow(2,n));
       }
     }
+    puts("|");
   }
+  display_separator();
   printf("\n\n");
 }
 
