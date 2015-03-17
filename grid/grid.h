@@ -19,7 +19,7 @@
 
 
 /**
- * \brief Grid is a struct which contains game's status : tiles and current score.
+ * \brief Contains game's status : tiles and current score.
  *
  *		        X
  *               0  1    ... GRID_SIDE-1
@@ -32,15 +32,13 @@
  *		+--+--+- ... -+--+
  *		|  |  |  ...  |  | GRID_SIDE-1
  *		+--+--+- ... -+--+
+ *
  */
-
-
 typedef struct grid_s* grid;
 
 /**
  * \brief Log_2-encoded tile : 0 is empty, i is 2**i.
  */
-
 typedef unsigned int tile;
 
 
@@ -63,7 +61,7 @@ grid new_grid ();
 void delete_grid (grid g);
 
 /**
- * \Clone the grid
+ * \brief Clone the grid
  * \param src the grid to copy
  * \param dst the copied grid
  */

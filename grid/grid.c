@@ -50,7 +50,8 @@ void set_tile (grid g, int x, int y, tile t) {
 }
 
 
-bool can_move (grid g, dir d) {
+
+/*bool can_move (grid g, dir d) {
   switch(d) {
     
   case UP:
@@ -64,7 +65,7 @@ bool can_move (grid g, dir d) {
 
   case DOWN:
     for(int i = 0 ; i < GRID_SIDE ; i++) {
-	for(int j = 0 ; j < GRID_SIDE-1 ; j++){
+	for(int j = 0 ; j < GRID_SIDE-1 ; j++) {
 	  if(g->t_grid[i][j] == g->t_grid[i][j+1] || g->t_grid[i][j+1] == 0)
 	    return true;
 	}
@@ -93,9 +94,42 @@ bool can_move (grid g, dir d) {
   }
     
   return false;
+  }*/
+
+static bool masque_can_move (grid g, int imin, int imax, int jmin, int jmax, int i1, int j1) {
+  for (int i = imin ; i < imax ; i++) {
+    for (int j = jmin ; j < jmax ; j++) {
+      if(g->t_grid[i][j] == g->t_grid[i+i1][j+j1] || g->t_grid[i+i1][j+j1] == 0)
+	return true;
+    }
+  }
+  return false;
 }
 
+bool can_move (grid g, dir d) {
+  switch(d) {
 
+  case UP:
+    return masque_can_move(g, 0, GRID_SIDE, 1, GRID_SIZE, 0, -1);
+    break;
+
+  case DOWN:
+    return masque_can_move(g, 0, GRID_SIDE, 0, GRID_SIZE-1, 0, 1);
+    break;
+
+  case LEFT:
+    return masque_can_move(g, 1, GRID_SIDE, 0, GRID_SIZE, -1, 0);
+    break;
+
+  case UP:
+    return masque_can_move(g, 0, GRID_SIDE-1, 0, GRID_SIZE, 1, 0);
+    break;
+
+  default:
+    break;
+  }
+}
+    
 bool game_over (grid g) {
     if (can_move (g, UP))
         return  false;
@@ -167,7 +201,8 @@ void do_move (grid g, dir d) {
     
     break;
                 
-  case DOWN:    for (int i = 0 ; i < GRID_SIDE ; i++)
+  case DOWN:
+    for (int i = 0 ; i < GRID_SIDE ; i++)
       {
 	
 	for (int j = GRID_SIDE-2 ; j >= 0 ; j--)
@@ -212,8 +247,8 @@ void do_move (grid g, dir d) {
 		set_tile(g,a,j,0);
 		g->score+=pow(2,get_tile(g,a+1,j));
 		}
-}
 	}
+	  }
       }
   }
 }
@@ -259,15 +294,13 @@ void add_tile (grid g) {
     }
   }
 }
-      
-              
+                    
 void play (grid g, dir d) {
   if(can_move (g,d)) {
     do_move (g,d); 
     add_tile(g);
   }
 }
-
 
 // Affichage de la grille et du score (version basique à améliorer)
 
@@ -286,7 +319,6 @@ void display (grid g) {
   }
   printf("\n\n");
 }
-
 
 int main() {
   srand(time(NULL)); // Initialisation de rand
