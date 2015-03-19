@@ -123,7 +123,7 @@ void do_move (grid g, dir d) {
       for (int j = 1 ; j < GRID_SIDE ; j++) {
 	/*faire_mov_vertical(g,i,j,-1);*/	    
 	if (get_tile(g,i,j)!=0) {
-	  a = i;
+	  a = j;
 	  while(a-1 >=0 && get_tile(g,i,a-1)==0) {
 	    set_tile(g,i,a-1,get_tile(g,i,a));
 	    set_tile(g,i,a,0);
