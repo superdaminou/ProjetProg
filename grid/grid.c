@@ -95,158 +95,140 @@ bool game_over (grid g) {
     return true;
 }
 
-static void victoire(int i) {
+static void victoire (int i) {
   if(pow(2,i) == VICTORY)
     printf("Victoire ! Vous pouvez continuer à jouer.");
 }
 
-// Réécrire do_move + masquage
-
 /*
-static void masquage_do_move (g, imin, imax, jmin, jmax, a1, b1, a2, j2) {
-  for (int i = imin ; i < imax ; i++) {
-    for (int j = jmin ; j < jmax ; j++) {
-      if (get_tile(g,i,j) != 0) {
-	a = j;
-	while (a1 >= 0 && get_tile(g,i,a1) {
-	set_tile(g,i,a1,get_tile(g,i)*/
-	
-	
+static void masquage_do_move (grid g, int i1, int i2, int j1, int j2, int iTest, int jTest, int iIncOrDec, int jIncOrDec, int incOrDec) {
+  for (int i = i1 ; i < i2 ; i += iIncOrDec) {
+    int k = j1;
+    int l = (get_tile(g,i,j1) == 0)?j1:j1+incOrDec;
+    for (int j = j1 ; j < j2 ; j += jIncOrDec) {
+      int n = get_tile(g, i, j);
+      if (n != 0) {
+	  if (n == get_tile(g, i, k)) {
+	    set_tile(g, i, k, n+1);
+	    set_tile(g, i, j, 0);
+	    k += incOrDec;
+	  }
+	  else {
+	    set_tile(g, i, l, n);
+	    if (l != j)
+	      set_tile(g, i, j, 0);
+	    k = l;
+	    l += incOrDec;
+	  }
+	}
+      }
+    }
+    }*/
+
+// do_move moins complexe : UN SEUL ET UNIQUE PARCOURS DE LA GRILLE !!!!! GG 
+
 void do_move (grid g, dir d) {
   assert(can_move(g,d));
 
   switch(d) {
-    int a = 0;
-    
+
   case UP:
     for (int i = 0 ; i < GRID_SIDE ; i++) {
+      int flagMerge = 0;
+      int flagMove = (get_tile(g,i,0) == 0)?0:1;
       for (int j = 1 ; j < GRID_SIDE ; j++) {
-	/*faire_mov_vertical(g,i,j,-1);*/	    
-	if (get_tile(g,i,j)!=0) {
-	  a = i;
-	  while(a-1 >=0 && get_tile(g,i,a-1)==0) {
-	    set_tile(g,i,a-1,get_tile(g,i,a));
-	    set_tile(g,i,a,0);
-	    a-=1;
+	int n = get_tile(g, i, j);
+	if (n != 0) {
+	  if (n == get_tile(g, i, flagMerge)) {
+	    set_tile(g, i, flagMerge, n+1);
+	    set_tile(g, i, j, 0);
+	    flagMerge++;
 	  }
-	  if (a-1>= 0 && get_tile(g,i,a-1)==get_tile(g,i,a)) {
-	    set_tile(g,i,a-1,get_tile(g,i,a)+1);
-	    victoire(get_tile(g,i,a-1));
-	    set_tile(g,i,a,0);
-	    g->score+=pow(2,get_tile(g,i,a-1));
-	  }
-	}
-      }
-    }
-    break;
-                
-  case LEFT:
-    for (int i = 1 ; i < GRID_SIDE ; i++) {
-      for (int j = 0 ; j < GRID_SIDE ; j++) {
-	/*faire_mov_horizontal(g,i,j,-1);*/	    
-	if (get_tile(g,i,j)!=0){
-	  a = i;
-	  while(a-1 >=0 && get_tile(g,a-1,j)==0) {
-	    set_tile(g,a-1,j,get_tile(g,a,j));
-	    set_tile(g,a,j,0);
-	    a-=1;
-	  }
-	  if (a-1 >=0 && get_tile(g,a-1,j)==get_tile(g,a,j)) {
-	    set_tile(g,a-1,j,get_tile(g,a,j)+1);
-	    victoire(get_tile(g,a-1,j));
-	    set_tile(g,a,j,0);
-	    g->score+=pow(2,get_tile(g,a-1,j));
+	  else {
+	    set_tile(g, i, flagMove, n);
+	    if (flagMove != j)
+	      set_tile(g, i, j, 0);
+	    flagMerge = flagMove;
+	    flagMove++;
 	  }
 	}
       }
     }
     break;
-                
+
   case DOWN:
     for (int i = 0 ; i < GRID_SIDE ; i++) {
+      int flagMerge = GRID_SIDE-1;
+      int flagMove = (get_tile(g,i,GRID_SIDE-1) == 0)?GRID_SIDE-1:GRID_SIDE-2;
       for (int j = GRID_SIDE-2 ; j >= 0 ; j--) {
-	/*faire_mov_vertical(g,i,j,1);*/	      
-	if (get_tile(g,i,j)!=0){
-	  a = j;
-	  while(a+1 <GRID_SIDE && get_tile(g,i,a+1)==0) {
-	    set_tile(g,i,a+1,get_tile(g,i,a));
-	    set_tile(g,i,a,0);
-	    a+=1;
+	int n = get_tile(g, i, j);
+	if (n != 0) {
+	  if (n == get_tile(g, i, flagMerge)) {
+	    set_tile(g, i, flagMerge, n+1);
+	    set_tile(g, i, j, 0);
+	    flagMerge--;
 	  }
-	  if (j+1 < GRID_SIDE && get_tile(g,i,a+1)==get_tile(g,i,a)) {
-	    set_tile(g,i,a+1,get_tile(g,i,a)+1);
-	    victoire(get_tile(g,i,a+1));
-	    set_tile(g,i,a,0);
-	    g->score+=pow(2,get_tile(g,i,a+1));
+	  else {
+	    set_tile(g, i, flagMove, n);
+	    if (flagMove != j)
+	      set_tile(g, i, j, 0);
+	    flagMerge = flagMove;
+	    flagMove--;
 	  }
 	}
       }
     }
     break;
-                
-  case RIGHT:
-    for (int i = GRID_SIDE-2 ; i >= 0 ; i--) {
-      for (int j = 0 ; j < GRID_SIDE ; j++) {
-	/*faire_mov_horizontal(g,i,j,1);*/	    
-	if (get_tile(g,i,j)!=0){
-	  a = i;
-	  while(a+1 < GRID_SIDE && get_tile(g,a+1,j)==0) {
-	    set_tile(g,a+1,j,get_tile(g,a,j));
-	    set_tile(g,a,j,0);
-	    a+=1;
+  
+  case LEFT:
+    for (int j = 0 ; j < GRID_SIDE ; j++) {
+      int flagMerge = 0;
+      int flagMove = (get_tile(g,0,j) == 0)?0:1;
+      for (int i = 1 ; i < GRID_SIDE ; i++) {
+	int n = get_tile(g, i, j);
+	if (n != 0) {
+	  if (n == get_tile(g, flagMerge, j)) {
+	    set_tile(g, flagMerge, j, n+1);
+	    set_tile(g, i, j, 0);
+	    flagMerge++;
 	  }
-	  if (a+1 <GRID_SIDE &&  get_tile(g,a+1,j)==get_tile(g,a,j)) {
-	    set_tile(g,a+1,j,get_tile(g,a,j)+1);
-	    victoire(get_tile(g,a+1,j));
-	    set_tile(g,a,j,0);
-	    g->score+=pow(2,get_tile(g,a+1,j));
+	  else {
+	    set_tile(g, flagMove, j, n);
+	    if (flagMove != i)
+	      set_tile(g, i, j, 0);
+	    flagMerge = flagMove;
+	    flagMove++;
 	  }
 	}
       }
     }
+    break;
+  
+  case RIGHT:
+    for (int j = 0 ; j < GRID_SIDE ; j++) {
+      int flagMerge = GRID_SIDE-1;
+      int flagMove = (get_tile(g,GRID_SIDE-1,j) == 0)?GRID_SIDE-1:GRID_SIDE-2;
+      for (int i = GRID_SIDE-2 ; i >= 0 ; i--) {
+	int n = get_tile(g, i, j);
+	if (n != 0) {
+	  if (n == get_tile(g, flagMerge, j)) {
+	    set_tile(g, flagMerge, j, n+1);
+	    set_tile(g, i, j, 0);
+	    flagMerge--;
+	  }
+	  else {
+	    set_tile(g, flagMove, j, n);
+	    if (flagMove != i)
+	      set_tile(g, i, j, 0);
+	    flagMerge = flagMove;
+	    flagMove--;
+	  }
+	}
+      }
+    }
+    break;
   }
 }
-
-
-/*void faire_mov_horizontal(grid g,int i,int j,int k){
-  if (get_tile(g,i,j)!=0){
-    a=i;
-    while(a+k < GRID_SIDE && get_tile(g,a+k,j)==0)
-      {
-	set_tile(g,a+k,j,get_tile(g,a,j));
-	set_tile(g,a,j,0);
-	a+=k;
-      }
-    if (a+k <GRID_SIDE &&  get_tile(g,a+k,j)==get_tile(g,a,j))
-      {
-	set_tile(g,a+k,j,get_tile(g,a,j)+1);
-	victoire(get_tile(g,a+k,j));
-	set_tile(g,a,j,0);
-	g->score+=pow(2,get_tile(g,a+k,j));
-      }
-  }
-  }
-
-
-void faire_mov_vertical(grid g,int i,int j,int k){
-  if (get_tile(g,i,j)!=0){
-    a=j;
-    while(a+k <GRID_SIDE && get_tile(g,i,a+k)==0)
-      {
-	set_tile(g,i,a+k,get_tile(g,i,a));
-	set_tile(g,i,a,0);
-	a+=k;
-      }
-    if (j+k < GRID_SIDE && get_tile(g,i,a+k)==get_tile(g,i,a))
-      {
-	set_tile(g,i,a+k,get_tile(g,i,a)+1);
-	victoire(get_tile(g,i,a+k));
-	set_tile(g,i,a,0);
-	g->score+=pow(2,get_tile(g,i,a+k));
-      }
-  }
-  }*/
-
 
 // Compte le nombre de cases libres
 
