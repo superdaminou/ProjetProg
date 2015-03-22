@@ -30,11 +30,11 @@ void auto_play (grid g)
 {
 	dir t[] = {UP, DOWN, LEFT, RIGHT};
 	int i = 0;
-	while (!game_over(g))
-		{
-			i = rand()%4;
+	while (!game_over(g)) {
+		i = rand()%4;
+		if (can_move(g, t[i]))
 			play(g, t[i]);
-		}
+	}
 }
 
 void facto_play (grid g, dir d) {
@@ -66,19 +66,23 @@ int main()
 				break;
 
 			case 'z':
-				facto_play(g, UP);
+				if (can_move(g, UP))
+					facto_play(g, UP);
 				break;
       
 			case 's':
-				facto_play(g, DOWN);
+				if (can_move(g, DOWN))
+					facto_play(g, DOWN);
 				break;
 
 			case 'q':
-				facto_play(g, LEFT);
+				if (can_move(g, LEFT))
+					facto_play(g, LEFT);
 				break;
 
 			case 'd':
-				facto_play(g, RIGHT);
+				if (can_move(g, RIGHT))
+					facto_play(g, RIGHT);
 				break;
 
 			default:
