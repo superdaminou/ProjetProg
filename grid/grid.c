@@ -52,7 +52,7 @@ void set_tile (grid g, int x, int y, tile t) {
 static bool masque_can_move (grid g, int imin, int imax, int jmin, int jmax, int i1, int j1) {
   for (int i = imin ; i < imax ; i++) {
     for (int j = jmin ; j < jmax ; j++) {
-      if(g->t_grid[i][j] == g->t_grid[i+i1][j+j1] || g->t_grid[i+i1][j+j1] == 0)
+      if((g->t_grid[i][j] == g->t_grid[i+i1][j+j1] || g->t_grid[i+i1][j+j1] == 0) && g->t_grid[i][j] != 0)
           return true;
     }
   }
@@ -137,22 +137,12 @@ void do_move (grid g, dir d) {
       int flagMerge = 0;
       int flagMove = (get_tile(g,i,0) == 0)?0:1;
       for (int j = 1 ; j < GRID_SIDE ; j++) {
-<<<<<<< HEAD
-	/*faire_mov_vertical(g,i,j,-1);*/	    
-	if (get_tile(g,i,j)!=0) {
-	  a = j;
-	  while(a-1 >=0 && get_tile(g,i,a-1)==0) {
-	    set_tile(g,i,a-1,get_tile(g,i,a));
-	    set_tile(g,i,a,0);
-	    a-=1;
-=======
 	int n = get_tile(g, i, j);
 	if (n != 0) {
 	  if (n == get_tile(g, i, flagMerge)) {
 	    set_tile(g, i, flagMerge, n+1);
 	    set_tile(g, i, j, 0);
 	    flagMerge++;
->>>>>>> 454162699e709585d10ddded97427aeea067ac00
 	  }
 	  else {
 	    set_tile(g, i, flagMove, n);
@@ -285,6 +275,7 @@ void add_tile (grid g) {
                     
 void play (grid g, dir d) {
   if(can_move (g,d)) {
+    printf("%d",can_move (g,d)?1:0);
     do_move(g,d); 
     add_tile(g);
   }
