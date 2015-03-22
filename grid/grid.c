@@ -95,7 +95,7 @@ bool game_over (grid g) {
     return true;
 }
 
-static void victoire (int i) {
+static void victory (int i) {
   if(pow(2,i) == VICTORY)
     printf("Victoire ! Vous pouvez continuer à jouer.");
 }
@@ -142,6 +142,8 @@ void do_move (grid g, dir d) {
 	  if (n == get_tile(g, i, flagMerge)) {
 	    set_tile(g, i, flagMerge, n+1);
 	    set_tile(g, i, j, 0);
+	    g->score += pow(2, n+1);
+	    victory(n+1);
 	    flagMerge++;
 	  }
 	  else {
@@ -166,6 +168,8 @@ void do_move (grid g, dir d) {
 	  if (n == get_tile(g, i, flagMerge)) {
 	    set_tile(g, i, flagMerge, n+1);
 	    set_tile(g, i, j, 0);
+	    g->score += pow(2, n+1);
+	    victory(n+1);	    
 	    flagMerge--;
 	  }
 	  else {
@@ -190,6 +194,8 @@ void do_move (grid g, dir d) {
 	  if (n == get_tile(g, flagMerge, j)) {
 	    set_tile(g, flagMerge, j, n+1);
 	    set_tile(g, i, j, 0);
+	    g->score += pow(2, n+1);
+	    victory(n+1);
 	    flagMerge++;
 	  }
 	  else {
@@ -214,6 +220,8 @@ void do_move (grid g, dir d) {
 	  if (n == get_tile(g, flagMerge, j)) {
 	    set_tile(g, flagMerge, j, n+1);
 	    set_tile(g, i, j, 0);
+	    g->score += pow(2, n+1);
+	    victory(n+1);
 	    flagMerge--;
 	  }
 	  else {
@@ -275,7 +283,6 @@ void add_tile (grid g) {
                     
 void play (grid g, dir d) {
   if(can_move (g,d)) {
-    printf("%d",can_move (g,d)?1:0);
     do_move(g,d); 
     add_tile(g);
   }

@@ -56,8 +56,6 @@ IN400A4
 
 IV. A faire
 
-- Debugger do_move vers le haut
-- Debugger le fait que des tiles sont ajoutées même si un mouvement est impossible
 - Rajouter des tests
 - Rajouter commentaires + balises pour la doc
 
