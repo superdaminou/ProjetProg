@@ -102,6 +102,8 @@ bool game_over (grid g) {
 	return true;
 }
 
+/* Score you have to reach to win */
+#define VICTORY 2048
 
 static void victory (int i) {
 	if(pow(2,i) == VICTORY)
@@ -265,17 +267,8 @@ void add_tile (grid g) {
 	}
 }
                     
+
 void play (grid g, dir d) {
-	if(can_move (g,d)) {
-		do_move(g,d); 
-		add_tile(g);
-	}
-}
-
-
-// Doc
-
-void playbis (grid g, dir d) {
 	do_move(g,d);
 	add_tile(g);
 }

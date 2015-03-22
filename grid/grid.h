@@ -17,9 +17,6 @@
 /** Grid dimension */
 #define GRID_SIDE 4
 
-#define VICTORY 2048
-
-
 /**
  * \brief Contains game's status : tiles and current score.
  *
@@ -132,7 +129,5 @@ void add_tile (grid g);
  * \pre the movement d must be possible (i.e. can_move(g,d) == true).
  */
 void play (grid g, dir d);
-
-
 
 #endif
