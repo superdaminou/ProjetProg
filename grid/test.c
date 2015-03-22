@@ -102,6 +102,7 @@ bool test_do_move(grid g,dir d)
             {
 				if (get_tile(g,i,j)!=0)
 					return false;
+                i++
             }
         }
 			return true;
