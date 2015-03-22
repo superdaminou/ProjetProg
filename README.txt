@@ -4,12 +4,13 @@ I. Files includes with this project
 
 - README.txt				This file
 - CMakeLists.txt			Used to build this project, must be in each (sub)directory of the project
+- play.c					Play implementation (main, display, auto_play)
 
-grid					Directory
+grid						Directory
 |- CMakeLists.txt
-|- grid.h				Grid header
-|- grid.c				Grid implementation (grid source code)
-|- play.c				Play implementation (main, display, auto_play)
+|- grid.h					Grid header
+|- grid.c					Grid implementation (grid source code)
+|- test.c					This file countains the source code to test functions of grid.c
 
 
 
@@ -23,7 +24,7 @@ Place yourself in the PROJECT ROOT and run theses instructions to generate Makef
 - cmake ..
 
 
-By now Makefiles should be created. Then, to create executables :
+By now Makefiles should be created. Then, to create executable and libgrid.a (grid library) :
 
 - make
 
@@ -34,7 +35,6 @@ To prepare all your tests, run this :
 To run all tests easily :
 
 - make test
-
 
 If everything passed successfully, you can now play :
 
