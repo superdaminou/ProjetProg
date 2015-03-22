@@ -10,4 +10,5 @@ add_subdirectory(grid)
 add_library(grid grid/grid.c)
 
 add_executable(play play.c grid/grid.c)
+add_executable(test grid/test.c grid/grid.c)
 target_link_libraries(play m)

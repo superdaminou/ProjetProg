@@ -227,7 +227,7 @@ void do_move (grid g, dir d) {
 
 // Compte le nombre de cases libres
 
-static int count_empty (grid g) {
+int count_empty (grid g) {
 	int n = 0;
 
 	for (int i = 0 ; i < GRID_SIDE ; i++) {
