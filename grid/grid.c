@@ -111,7 +111,17 @@ static void victory (int i) {
 }
 
 
-// do_move moins complexe : UN SEUL ET UNIQUE PARCOURS DE LA GRILLE !!!!! GG  DOC A FAIRE Facto impossible (la condition change, etc.)
+/* do_move avec une complexité en n (un seul parcours de tableau).
+Pour chaque mouvement, on place des marqueurs (des flags) à chaque parcours de ligne ou colonne (selon le mouvement).
+
+      - flagMerge : on place un flag qui correspond à la case qu'il faut comparer pour la fusion (c'est utile pour éviter des cas de fusions multiples)
+      - flagMove  : on place un flag qui indique où il faut positionner la valeur si la fusion n'est pas réalisée 
+
+Pour les mouvements UP et DOWN, les flags se situent sur les indices verticaux (l'axe j, parcours de colonnes).
+Pour les mouvements LEFT et RIGHT, les flags se situent sur les indices horizontaux (l'axe i, parcours de lignes). 
+
+La factorisation de code pour éviter la duplication est difficilement envisageable étant donné que beaucoup de paramètres, et même des conditions
+changent d'un mouvement à l'autre. */
 
 void do_move (grid g, dir d) {
 	assert(can_move(g,d));
