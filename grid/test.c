@@ -80,7 +80,7 @@ void test_do_move(grid g,dir d){
 				j--;}
 			while(j>=0){
 				if (g->grid[i][j]!=0)
-					return("erreur de do_move avec la case [d%][d%d]",i,j);}}
+					return("erreur de do_move avec la case [%d][%d]",i,j);}}
 			return("verification de do_move");
 				
 
@@ -91,7 +91,7 @@ void test_do_move(grid g,dir d){
 				i++;}
 			while(i<GRID_SIDE){
 				if (g->grid[i][j]!=0)
-					return("erreur de do_move avec la case [d%][d%d]",i,j);}}
+					return("erreur de do_move avec la case [%d][%d]",i,j);}}
 			return("verification de do_move");
 		
 	case LEFT:
@@ -101,7 +101,7 @@ void test_do_move(grid g,dir d){
 				i--;}
 			while(i>=0){
 				if (g->grid[i][j]!=0)
-					return("erreur de do_move avec la case [d%][d%d]",i,j);}}
+					return("erreur de do_move avec la case [%d][%d]",i,j);}}
 			return("verification de do_move");
 }
 }
