@@ -10,7 +10,10 @@ grid						Directory
 |- CMakeLists.txt
 |- grid.h					Grid header
 |- grid.c					Grid implementation (grid source code)
-|- test.c					This file countains the source code to test functions of grid.c
+
+test						Directory
+|- CMakeLists.txt
+|- test_grid.c				This file countains the source code to test functions of grid.c
 
 
 
@@ -53,11 +56,6 @@ LE GARREC Damien
 
 University of Bordeaux, Talence (33)
 IN400A4
-
-IV. A faire
-
-- Rajouter des tests
-- Rajouter commentaires + balises pour la doc
 
 
 
