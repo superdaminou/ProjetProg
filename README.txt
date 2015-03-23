@@ -31,13 +31,15 @@ By now Makefiles should be created. Then, to create executable and libgrid.a (gr
 
 - make
 
-To prepare all your tests, run this :
-
-- cmake -Dtest=ON ..
-
 To run all tests easily :
 
 - make test
+
+If you want to check detailed tests :
+
+- cd test
+- ./test_grid
+- cd ..
 
 If everything passed successfully, you can now play :
 

@@ -52,7 +52,7 @@ void set_tile (grid g, int x, int y, tile t) {
 }
 
 
-// Doc
+// Factorisation de code possible afin d'éviter la duplication en passant en paramètre les indices.
 
 static bool can_move_facto (grid g, int imin, int imax, int jmin, int jmax, int i1, int j1) {
 	for (int i = imin ; i < imax ; i++) {

@@ -12,3 +12,7 @@ add_library(grid grid/grid.c)
 
 add_executable(play play.c grid/grid.c)
 target_link_libraries(play m)
+
+enable_testing()
+
+add_test(test_grid test/test_grid)
