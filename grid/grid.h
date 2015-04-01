@@ -17,7 +17,6 @@
 /** Grid dimension */
 #define GRID_SIDE 4
 
-
 /**
  * \brief Contains game's status : tiles and current score.
  *
@@ -131,6 +130,8 @@ void add_tile (grid g);
  */
 void play (grid g, dir d);
 
+int count_empty (grid g);
 
+static void victory (int i);
 
 #endif
