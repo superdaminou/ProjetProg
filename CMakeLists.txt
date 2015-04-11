@@ -8,6 +8,7 @@ include_directories(
 
 add_subdirectory(grid)
 add_subdirectory(test)
+add_subdirectory(strategy)
 add_library(grid grid/grid.c)
 
 add_executable(play play.c grid/grid.c)
