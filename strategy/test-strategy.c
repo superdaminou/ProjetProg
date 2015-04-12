@@ -70,18 +70,17 @@ int main() {
 
 
   printf("[Début du test fast]\n");
-
   grid g3 = new_grid();
   add_tile(g3);
   add_tile(g3);
   display(g3);
   strategy s3 = A4_parpaite_seegers_legarrec_fast();
-
-   while(!game_over(g3)) {
-    dir d = s3->play_move(s3, g3);
-    if (can_move(g3, d)) {
-      play(g3, d);
-    }
+  while(!game_over(g3)) {
+	  dir d = s3->play_move(s3, g3);
+	  if (can_move(g3, d)) {
+		  play(g3, d);
+		  printf("Score : %d\n", grid_score(g3));
+	  }
   }
   display(g3);
   delete_grid(g3);

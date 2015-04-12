@@ -1,6 +1,8 @@
 #include "strategy.h"
 #include "stdlib.h"
 
+#define MINMAX_MAX_LEVEL 5
+
 void free_strategy(strategy s) {
 	free(s->mem);
 }
@@ -132,16 +134,62 @@ static int evaluer_score(grid g) {
 			+ 40 * best_tile_on_edge); // L'évaluation du score est d'autant plus élevée qu'il y a de cases vides et peu de non-mononicités
 }
 
-dir play_move_fast(strategy s, grid g) {
+static int evaluer_recursivement_tuile(grid g, int level);
+
+static int evaluer_recursivement_direction(grid g, int level) {
+	if (level == MINMAX_MAX_LEVEL)
+		return evaluer_score(g);
 	dir t[] = {UP, DOWN, LEFT, RIGHT};
-	int d;
-	int evalMax = -64; // On initialise avec l'evaluation minimale possible
+	int evalMax = -100000000;
 	grid gCopy = new_grid();
 	for (int i = 0 ; i < 4 ; i++) {
 		if (can_move(g, t[i])) {
 			copy_grid(g, gCopy);
 			do_move(gCopy, t[i]);
-			int evalCurrent = evaluer_score(gCopy);
+			int evalCurrent = evaluer_recursivement_tuile(gCopy, level+1);
+			if (evalCurrent > evalMax) {
+				evalMax = evalCurrent;
+			}
+		}
+	}
+	delete_grid(gCopy);
+	return evalMax;
+}
+
+static int evaluer_recursivement_tuile(grid g, int level) {
+	if (level == MINMAX_MAX_LEVEL)
+		return evaluer_score(g);
+    int empty_tiles = count_empty_tiles(g);
+	int k = empty_tiles;
+	int evalMoyenne = 0;
+	grid gCopy = new_grid();
+	while (k > 0) {
+		for (int i = 0 ; i < GRID_SIDE ; i++) {
+			for (int j = 0 ; j < GRID_SIDE ; j++) {
+				if (get_tile(g, i, j) == 0) {
+					copy_grid(g, gCopy);
+					set_tile(gCopy, i, j, 2);
+					k--;
+					evalMoyenne += evaluer_recursivement_direction(gCopy, level+1);
+				}
+			}
+		}
+	}
+	delete_grid(gCopy);
+	return evalMoyenne/empty_tiles;
+}
+
+
+dir play_move_fast(strategy s, grid g) {
+	dir t[] = {UP, DOWN, LEFT, RIGHT};
+	int d;
+	int evalMax = -1000000; // On initialise avec l'evaluation minimale possible
+	grid gCopy = new_grid();
+	for (int i = 0 ; i < 4 ; i++) {
+		if (can_move(g, t[i])) {
+			copy_grid(g, gCopy);
+			do_move(gCopy, t[i]);
+			int evalCurrent = evaluer_recursivement_tuile(gCopy, 0);
 			if (evalCurrent > evalMax) {
 				d = t[i];
 				evalMax = evalCurrent;
