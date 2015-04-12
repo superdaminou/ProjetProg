@@ -11,7 +11,16 @@ add_subdirectory(test)
 add_library(grid grid/grid.c)
 
 add_executable(play play.c grid/grid.c)
+add_executable(playGraph playGraph.c grid/grid.c)
 target_link_libraries(play m)
+target_link_libraries(playGraph m)
+
+INCLUDE(FindPkgConfig)
+
+INCLUDE(FindPkgConfig)
+PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
+INCLUDE_DIRECTORIES(${SDL2_INCLUDE_DIRS})
+TARGET_LINK_LIBRARIES(playGraph ${SDL2_LIBRARIES})
 
 enable_testing()
 

@@ -263,7 +263,6 @@ void add_tile (grid g) {
 
 	int val = (rand()%10 == 0)?2:1;
 	int k = rand()%n;
-
 	for (int i = 0 ; i < GRID_SIDE ; i++) {
 		for (int j = 0 ; j < GRID_SIDE ; j++) {
 			if (g->t_grid[i][j] == 0) {
