@@ -2,7 +2,6 @@
 #include "stdlib.h"
 
 void free_strategy(strategy s) {
-	free(s->name);
 }
 
 void free_memless_strat(strategy s) {
