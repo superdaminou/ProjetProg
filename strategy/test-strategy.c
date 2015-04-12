@@ -34,7 +34,7 @@ int main() {
   add_tile(g1);
   add_tile(g1);
   display(g1);
-  strategy s1 = strategy_random();
+  strategy s1 = A4_parpaite_seegers_legarrec_random();
 
   while(!game_over(g1)) {
     dir d = s1->play_move(s1, g1);
@@ -43,6 +43,8 @@ int main() {
     }
   }
   display(g1);
+  free_strategy(s1);
+  free_memless_strat(s1);
   delete_grid(g1);
 
   printf("[Fin du test random]\n\n");
@@ -53,7 +55,7 @@ int main() {
   add_tile(g2);
   add_tile(g2);
   display(g2);
-  strategy s2 = strategy_basique();
+  strategy s2 = A4_parpaite_seegers_legarrec_basique();
 
    while(!game_over(g2)) {
     dir d = s2->play_move(s2, g2);
@@ -65,4 +67,24 @@ int main() {
   delete_grid(g2);
   
   printf("[Fin du test basique]\n");
+
+
+  printf("[Début du test fast]\n");
+
+  grid g3 = new_grid();
+  add_tile(g3);
+  add_tile(g3);
+  display(g3);
+  strategy s3 = A4_parpaite_seegers_legarrec_fast();
+
+   while(!game_over(g3)) {
+    dir d = s3->play_move(s3, g3);
+    if (can_move(g3, d)) {
+      play(g3, d);
+    }
+  }
+  display(g3);
+  delete_grid(g3);
+  
+  printf("[Fin du test fast]\n");
 }

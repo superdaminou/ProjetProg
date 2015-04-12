@@ -130,8 +130,4 @@ void add_tile (grid g);
  */
 void play (grid g, dir d);
 
-int count_empty (grid g);
-
-static void victory (int i);
-
 #endif

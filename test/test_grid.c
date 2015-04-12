@@ -113,6 +113,18 @@ bool test_can_move(grid g,dir d)
 		}
 }
 
+static int count_empty (grid g) {
+	int n = 0;
+
+	for (int i = 0 ; i < GRID_SIDE ; i++) {
+		for (int j = 0 ; j < GRID_SIDE ; j++) {
+			if (get_tile(g, i, j) == 0)
+				n++;
+		}
+	}
+	return n;
+}  
+
 bool test_add_tile (grid g) {
 	int i = count_empty(g);
 	add_tile(g);
