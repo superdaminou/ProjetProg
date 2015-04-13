@@ -1,8 +1,6 @@
 #include "strategy.h"
 #include "stdlib.h"
 
-#define MINMAX_MAX_LEVEL 5
-
 void free_strategy(strategy s) {
 	free(s->mem);
 }
@@ -128,25 +126,25 @@ static int evaluer_score(grid g) {
 	int best_tile_on_edge = is_best_tile_on_edge(g, best_tile);
 
 	return (10 * empty_tiles 
-			- 2 * non_monotonicity
+			- 11 * non_monotonicity
 			+ best_tile
-			+ 50 * best_tile_in_corner
-			+ 40 * best_tile_on_edge); // L'évaluation du score est d'autant plus élevée qu'il y a de cases vides et peu de non-mononicités
+			+ 60 * best_tile_in_corner
+			+ 50 * best_tile_on_edge); // L'évaluation du score est d'autant plus élevée qu'il y a de cases vides et peu de non-mononicités
 }
 
-static int evaluer_recursivement_tuile(grid g, int level);
+static int evaluer_recursivement_tuile(grid g, int level, int minmax_max_level);
 
-static int evaluer_recursivement_direction(grid g, int level) {
-	if (level == MINMAX_MAX_LEVEL)
+static int evaluer_recursivement_direction(grid g, int level, int minmax_max_level) {
+	if (level == minmax_max_level)
 		return evaluer_score(g);
 	dir t[] = {UP, DOWN, LEFT, RIGHT};
-	int evalMax = -100000000;
+	int evalMax = -100000;
 	grid gCopy = new_grid();
 	for (int i = 0 ; i < 4 ; i++) {
 		if (can_move(g, t[i])) {
 			copy_grid(g, gCopy);
 			do_move(gCopy, t[i]);
-			int evalCurrent = evaluer_recursivement_tuile(gCopy, level+1);
+			int evalCurrent = evaluer_recursivement_tuile(gCopy, level+1, minmax_max_level);
 			if (evalCurrent > evalMax) {
 				evalMax = evalCurrent;
 			}
@@ -156,21 +154,21 @@ static int evaluer_recursivement_direction(grid g, int level) {
 	return evalMax;
 }
 
-static int evaluer_recursivement_tuile(grid g, int level) {
-	if (level == MINMAX_MAX_LEVEL)
+static int evaluer_recursivement_tuile(grid g, int level, int minmax_max_level) {
+	if (level == minmax_max_level)
 		return evaluer_score(g);
     int empty_tiles = count_empty_tiles(g);
 	int k = empty_tiles;
 	int evalMoyenne = 0;
 	grid gCopy = new_grid();
-	while (k > 0) {
+	while (k > 1) {
 		for (int i = 0 ; i < GRID_SIDE ; i++) {
 			for (int j = 0 ; j < GRID_SIDE ; j++) {
 				if (get_tile(g, i, j) == 0) {
 					copy_grid(g, gCopy);
 					set_tile(gCopy, i, j, 2);
 					k--;
-					evalMoyenne += evaluer_recursivement_direction(gCopy, level+1);
+					evalMoyenne += evaluer_recursivement_direction(gCopy, level+1, minmax_max_level);
 				}
 			}
 		}
@@ -183,13 +181,21 @@ static int evaluer_recursivement_tuile(grid g, int level) {
 dir play_move_fast(strategy s, grid g) {
 	dir t[] = {UP, DOWN, LEFT, RIGHT};
 	int d;
-	int evalMax = -1000000; // On initialise avec l'evaluation minimale possible
+	int evalMax = -100000; // On initialise avec l'evaluation minimale possible
 	grid gCopy = new_grid();
+	int minmax_max_level;
+	int empty_tiles = count_empty_tiles(g);
+	if (empty_tiles >= 5)
+		minmax_max_level = 4;
+	if (empty_tiles < 5)
+		minmax_max_level = 6;
+	if (empty_tiles < 2)
+		minmax_max_level = 8;
 	for (int i = 0 ; i < 4 ; i++) {
 		if (can_move(g, t[i])) {
 			copy_grid(g, gCopy);
 			do_move(gCopy, t[i]);
-			int evalCurrent = evaluer_recursivement_tuile(gCopy, 0);
+			int evalCurrent = evaluer_recursivement_tuile(gCopy, 0, minmax_max_level);
 			if (evalCurrent > evalMax) {
 				d = t[i];
 				evalMax = evalCurrent;
