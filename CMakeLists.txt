@@ -10,6 +10,7 @@ add_subdirectory(grid)
 add_subdirectory(test)
 add_subdirectory(strategy)
 add_library(grid grid/grid.c)
+add_library(strategy strategy/strategy.c)
 
 add_executable(play play.c grid/grid.c)
 add_executable(playGraph playGraph.c grid/grid.c)

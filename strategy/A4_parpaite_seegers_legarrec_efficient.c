@@ -143,7 +143,7 @@ static int evaluer_recursivement_tuile(grid g, int level, int minmax_max_level) 
 }
 
 
-dir play_move_fast(strategy s, grid g) {
+dir play_move_efficient(strategy s, grid g) {
 	dir t[] = {UP, DOWN, LEFT, RIGHT};
 	int d;
 	int evalMax = -100000; // On initialise avec l'evaluation minimale possible
@@ -151,11 +151,11 @@ dir play_move_fast(strategy s, grid g) {
 	int minmax_max_level;
 	int empty_tiles = count_empty_tiles(g);
 	if (empty_tiles >= 5)
-		minmax_max_level = 4;
+		minmax_max_level = 5;
 	if (empty_tiles < 5)
-		minmax_max_level = 6;
-	if (empty_tiles < 2)
 		minmax_max_level = 8;
+	if (empty_tiles < 3)
+		minmax_max_level = 10;
 	for (int i = 0 ; i < 4 ; i++) {
 		if (can_move(g, t[i])) {
 			copy_grid(g, gCopy);
@@ -171,9 +171,9 @@ dir play_move_fast(strategy s, grid g) {
 	return d;
 }
 
-strategy A4_parpaite_seegers_legarrec_fast() {
+strategy A4_parpaite_seegers_legarrec_efficient() {
 	strategy s = malloc(sizeof(struct strategy_s));
-	s->name = "A4_parpaite_seegers_legarrec_fast";
-	s->play_move = play_move_fast;
+	s->name = "A4_parpaite_seegers_legarrec_efficient";
+	s->play_move = play_move_efficient;
 	s->free_strategy = free_strategy;
 }

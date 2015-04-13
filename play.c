@@ -1,5 +1,4 @@
 #include "grid.h"
-
 // Affichage de la grille et du score (version basique à améliorer)
 
 void display_separator() {
