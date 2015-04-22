@@ -7,48 +7,24 @@
 
 void drawGrid(SDL_Renderer *renderer);
 void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL_Surface * message,grid g );
+void auto_play(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL_Surface * message,grid g);
+
+void afficherScore(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL_Surface * message,grid g );
 
 SDL_Color couleur = {255, 255, 255};
 SDL_Color textColor = { 255, 255, 255 };
+int fenetretaille=640;
 
-void display (grid g) {
-    printf("\nScore : %lu\n\n", grid_score(g));
-    for (int j=0; j<GRID_SIDE;j++){
-        for (int i = 0 ; i < GRID_SIDE ; i++) {
-            if (get_tile(g,i,j) == 0)
-            printf("|%4u   ", get_tile(g,i,j));
-            else {
-                unsigned int n = (unsigned int) get_tile(g,i,j); // downcast pour affichage
-                printf("|%4u   ", (unsigned int) pow(2,n));
-        }
-        puts("|");
-    }
-    }
-    printf("\n\n");
-}
-
-void auto_play (grid g)
-{
-    dir t[] = {UP, DOWN, LEFT, RIGHT};
-    int i = 0;
-    while (!game_over(g)) {
-        i = rand()%4;
-        if (can_move(g, t[i]))
-        play(g, t[i]);
-    }
-}
 
 void facto_play (grid g, dir d) {
     play(g, d);
-    display(g);
 }
-
 
 int main()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
     //creation de la fenetre:
-    SDL_Window* window = SDL_CreateWindow("2048",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,640,640,SDL_WINDOW_SHOWN);
+    SDL_Window* window = SDL_CreateWindow("2048",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,fenetretaille,fenetretaille+50,SDL_WINDOW_SHOWN);
     //Creation du renderer (actualsation):
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1,SDL_RENDERER_PRESENTVSYNC);
     
@@ -59,32 +35,27 @@ int main()
     
     TTF_Init();
     TTF_Font *font = NULL;
-    font = TTF_OpenFont( "../chunkfive.ttf", 28 );
+    font = TTF_OpenFont( "../Ressource/chunkfive.ttf", 28 );
     
     
     SDL_Surface *message = NULL;
     SDL_Surface *screen = NULL;
     
     
-    message = TTF_RenderText_Solid( font, "The quick brown fox jumps over the lazy dog", textColor );
     SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer,
                                                          message);
-    
     
     srand(time(NULL)); // Initialisation de rand
     
     grid g = new_grid();
     add_tile(g);
     add_tile(g);
-    printf("\nUse Z, Q, S, D + enter to play. You can use A to generate a random session.\n\n");
-    display(g);
-    
     SDL_Event event;
     bool run=true;
     
 
     
-    while (!game_over(g) && run)
+    while ( run)
     {
         while(SDL_PollEvent(&event)){
             if (event.type==SDL_QUIT)
@@ -103,8 +74,7 @@ int main()
                         run=false;
                         break;
                     case 'a':
-                        auto_play(g);
-                        display(g);
+                        auto_play(renderer,font,texture,message,g);
                         break;
                 
                     case SDLK_UP:
@@ -141,12 +111,15 @@ int main()
         
 
     }
+    
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
     printf("Score final : %lu\n", grid_score(g));
     return EXIT_SUCCESS;
 }
+
+
 
 void drawGrid(SDL_Renderer *renderer){
     for (int i=0; i<=640; i+=640/GRID_SIDE){
@@ -164,14 +137,16 @@ void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL
     taille.h=640/GRID_SIDE;
     taille.w=640/GRID_SIDE;
     
-    for (int i=0;i<GRID_SIDE;i++){
-        for (int j=0;j<GRID_SIDE;j++){
-            if (get_tile(g,i,j)!=0){
+    for (int i=0;i<GRID_SIDE;i++)
+    {
+        for (int j=0;j<GRID_SIDE;j++)
+        {
+            if (get_tile(g,i,j)!=0)
+            {
             int n=pow(2,get_tile(g,i,j));
             snprintf(c,taillechar, "%d",n);
             message = TTF_RenderText_Solid( font, c, textColor );
-            SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer,
-                                                                 message);
+            texture = SDL_CreateTextureFromSurface(renderer,message);
             taille.x=i*640/GRID_SIDE;
             taille.y=j*640/GRID_SIDE;
             SDL_RenderCopy(renderer,texture, NULL,&taille);
@@ -181,5 +156,38 @@ void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL
             
         }
     }
+    int score=grid_score(g);
+    
+    if (game_over(g)){
+        snprintf(c,taillechar,"Game over ! score : %d",score);
+    }
+    else{
+        snprintf(c,taillechar,"score: %d",score);
+    }
+    message =TTF_RenderText_Solid(font,c,textColor);
+    texture = SDL_CreateTextureFromSurface(renderer,message);
+    taille.h=50;
+    taille.w=150;
+    taille.x=fenetretaille/2-100;
+    taille.y=fenetretaille;
+    SDL_RenderCopy(renderer,texture, NULL,&taille);
+    SDL_DestroyTexture(texture);
+    SDL_FreeSurface(message);
+
+    
+    
 }
+void auto_play (SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL_Surface * message,grid g)
+{
+    dir t[] = {UP, DOWN, LEFT, RIGHT};
+    int i = 0;
+    while (!game_over(g)) {
+        i = rand()%4;
+        if (can_move(g, t[i]))
+            play(g, t[i]);
+        actualiser(renderer,font,texture,message,g);
+    }
+}
+
+
 

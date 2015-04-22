@@ -141,18 +141,46 @@ A4_parpaite_seegers_legarrec_fast/fast:
 .PHONY : A4_parpaite_seegers_legarrec_fast/fast
 
 # Convenience name for target.
-strategy/CMakeFiles/test-strategy.dir/rule:
-	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f CMakeFiles/Makefile2 strategy/CMakeFiles/test-strategy.dir/rule
-.PHONY : strategy/CMakeFiles/test-strategy.dir/rule
+strategy/CMakeFiles/test_strategy_efficient.dir/rule:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f CMakeFiles/Makefile2 strategy/CMakeFiles/test_strategy_efficient.dir/rule
+.PHONY : strategy/CMakeFiles/test_strategy_efficient.dir/rule
 
 # Convenience name for target.
-test-strategy: strategy/CMakeFiles/test-strategy.dir/rule
-.PHONY : test-strategy
+test_strategy_efficient: strategy/CMakeFiles/test_strategy_efficient.dir/rule
+.PHONY : test_strategy_efficient
 
 # fast build rule for target.
-test-strategy/fast:
-	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test-strategy.dir/build.make strategy/CMakeFiles/test-strategy.dir/build
-.PHONY : test-strategy/fast
+test_strategy_efficient/fast:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_efficient.dir/build.make strategy/CMakeFiles/test_strategy_efficient.dir/build
+.PHONY : test_strategy_efficient/fast
+
+# Convenience name for target.
+strategy/CMakeFiles/test_strategy_fast.dir/rule:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f CMakeFiles/Makefile2 strategy/CMakeFiles/test_strategy_fast.dir/rule
+.PHONY : strategy/CMakeFiles/test_strategy_fast.dir/rule
+
+# Convenience name for target.
+test_strategy_fast: strategy/CMakeFiles/test_strategy_fast.dir/rule
+.PHONY : test_strategy_fast
+
+# fast build rule for target.
+test_strategy_fast/fast:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_fast.dir/build.make strategy/CMakeFiles/test_strategy_fast.dir/build
+.PHONY : test_strategy_fast/fast
+
+# Convenience name for target.
+strategy/CMakeFiles/test_strategy_random_basique.dir/rule:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f CMakeFiles/Makefile2 strategy/CMakeFiles/test_strategy_random_basique.dir/rule
+.PHONY : strategy/CMakeFiles/test_strategy_random_basique.dir/rule
+
+# Convenience name for target.
+test_strategy_random_basique: strategy/CMakeFiles/test_strategy_random_basique.dir/rule
+.PHONY : test_strategy_random_basique
+
+# fast build rule for target.
+test_strategy_random_basique/fast:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_random_basique.dir/build.make strategy/CMakeFiles/test_strategy_random_basique.dir/build
+.PHONY : test_strategy_random_basique/fast
 
 A4_parpaite_seegers_legarrec_efficient.o: A4_parpaite_seegers_legarrec_efficient.c.o
 .PHONY : A4_parpaite_seegers_legarrec_efficient.o
@@ -160,6 +188,7 @@ A4_parpaite_seegers_legarrec_efficient.o: A4_parpaite_seegers_legarrec_efficient
 # target to build an object file
 A4_parpaite_seegers_legarrec_efficient.c.o:
 	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/A4_parpaite_seegers_legarrec_efficient.dir/build.make strategy/CMakeFiles/A4_parpaite_seegers_legarrec_efficient.dir/A4_parpaite_seegers_legarrec_efficient.c.o
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_efficient.dir/build.make strategy/CMakeFiles/test_strategy_efficient.dir/A4_parpaite_seegers_legarrec_efficient.c.o
 .PHONY : A4_parpaite_seegers_legarrec_efficient.c.o
 
 A4_parpaite_seegers_legarrec_efficient.i: A4_parpaite_seegers_legarrec_efficient.c.i
@@ -168,6 +197,7 @@ A4_parpaite_seegers_legarrec_efficient.i: A4_parpaite_seegers_legarrec_efficient
 # target to preprocess a source file
 A4_parpaite_seegers_legarrec_efficient.c.i:
 	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/A4_parpaite_seegers_legarrec_efficient.dir/build.make strategy/CMakeFiles/A4_parpaite_seegers_legarrec_efficient.dir/A4_parpaite_seegers_legarrec_efficient.c.i
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_efficient.dir/build.make strategy/CMakeFiles/test_strategy_efficient.dir/A4_parpaite_seegers_legarrec_efficient.c.i
 .PHONY : A4_parpaite_seegers_legarrec_efficient.c.i
 
 A4_parpaite_seegers_legarrec_efficient.s: A4_parpaite_seegers_legarrec_efficient.c.s
@@ -176,6 +206,7 @@ A4_parpaite_seegers_legarrec_efficient.s: A4_parpaite_seegers_legarrec_efficient
 # target to generate assembly for a file
 A4_parpaite_seegers_legarrec_efficient.c.s:
 	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/A4_parpaite_seegers_legarrec_efficient.dir/build.make strategy/CMakeFiles/A4_parpaite_seegers_legarrec_efficient.dir/A4_parpaite_seegers_legarrec_efficient.c.s
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_efficient.dir/build.make strategy/CMakeFiles/test_strategy_efficient.dir/A4_parpaite_seegers_legarrec_efficient.c.s
 .PHONY : A4_parpaite_seegers_legarrec_efficient.c.s
 
 A4_parpaite_seegers_legarrec_fast.o: A4_parpaite_seegers_legarrec_fast.c.o
@@ -184,6 +215,7 @@ A4_parpaite_seegers_legarrec_fast.o: A4_parpaite_seegers_legarrec_fast.c.o
 # target to build an object file
 A4_parpaite_seegers_legarrec_fast.c.o:
 	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/A4_parpaite_seegers_legarrec_fast.dir/build.make strategy/CMakeFiles/A4_parpaite_seegers_legarrec_fast.dir/A4_parpaite_seegers_legarrec_fast.c.o
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_fast.dir/build.make strategy/CMakeFiles/test_strategy_fast.dir/A4_parpaite_seegers_legarrec_fast.c.o
 .PHONY : A4_parpaite_seegers_legarrec_fast.c.o
 
 A4_parpaite_seegers_legarrec_fast.i: A4_parpaite_seegers_legarrec_fast.c.i
@@ -192,6 +224,7 @@ A4_parpaite_seegers_legarrec_fast.i: A4_parpaite_seegers_legarrec_fast.c.i
 # target to preprocess a source file
 A4_parpaite_seegers_legarrec_fast.c.i:
 	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/A4_parpaite_seegers_legarrec_fast.dir/build.make strategy/CMakeFiles/A4_parpaite_seegers_legarrec_fast.dir/A4_parpaite_seegers_legarrec_fast.c.i
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_fast.dir/build.make strategy/CMakeFiles/test_strategy_fast.dir/A4_parpaite_seegers_legarrec_fast.c.i
 .PHONY : A4_parpaite_seegers_legarrec_fast.c.i
 
 A4_parpaite_seegers_legarrec_fast.s: A4_parpaite_seegers_legarrec_fast.c.s
@@ -200,6 +233,7 @@ A4_parpaite_seegers_legarrec_fast.s: A4_parpaite_seegers_legarrec_fast.c.s
 # target to generate assembly for a file
 A4_parpaite_seegers_legarrec_fast.c.s:
 	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/A4_parpaite_seegers_legarrec_fast.dir/build.make strategy/CMakeFiles/A4_parpaite_seegers_legarrec_fast.dir/A4_parpaite_seegers_legarrec_fast.c.s
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_fast.dir/build.make strategy/CMakeFiles/test_strategy_fast.dir/A4_parpaite_seegers_legarrec_fast.c.s
 .PHONY : A4_parpaite_seegers_legarrec_fast.c.s
 
 __/grid/grid.o: __/grid/grid.c.o
@@ -207,7 +241,9 @@ __/grid/grid.o: __/grid/grid.c.o
 
 # target to build an object file
 __/grid/grid.c.o:
-	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test-strategy.dir/build.make strategy/CMakeFiles/test-strategy.dir/__/grid/grid.c.o
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_efficient.dir/build.make strategy/CMakeFiles/test_strategy_efficient.dir/__/grid/grid.c.o
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_fast.dir/build.make strategy/CMakeFiles/test_strategy_fast.dir/__/grid/grid.c.o
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_random_basique.dir/build.make strategy/CMakeFiles/test_strategy_random_basique.dir/__/grid/grid.c.o
 .PHONY : __/grid/grid.c.o
 
 __/grid/grid.i: __/grid/grid.c.i
@@ -215,7 +251,9 @@ __/grid/grid.i: __/grid/grid.c.i
 
 # target to preprocess a source file
 __/grid/grid.c.i:
-	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test-strategy.dir/build.make strategy/CMakeFiles/test-strategy.dir/__/grid/grid.c.i
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_efficient.dir/build.make strategy/CMakeFiles/test_strategy_efficient.dir/__/grid/grid.c.i
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_fast.dir/build.make strategy/CMakeFiles/test_strategy_fast.dir/__/grid/grid.c.i
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_random_basique.dir/build.make strategy/CMakeFiles/test_strategy_random_basique.dir/__/grid/grid.c.i
 .PHONY : __/grid/grid.c.i
 
 __/grid/grid.s: __/grid/grid.c.s
@@ -223,56 +261,106 @@ __/grid/grid.s: __/grid/grid.c.s
 
 # target to generate assembly for a file
 __/grid/grid.c.s:
-	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test-strategy.dir/build.make strategy/CMakeFiles/test-strategy.dir/__/grid/grid.c.s
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_efficient.dir/build.make strategy/CMakeFiles/test_strategy_efficient.dir/__/grid/grid.c.s
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_fast.dir/build.make strategy/CMakeFiles/test_strategy_fast.dir/__/grid/grid.c.s
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_random_basique.dir/build.make strategy/CMakeFiles/test_strategy_random_basique.dir/__/grid/grid.c.s
 .PHONY : __/grid/grid.c.s
 
-strategy.o: strategy.c.o
-.PHONY : strategy.o
+strategy_random_basique.o: strategy_random_basique.c.o
+.PHONY : strategy_random_basique.o
 
 # target to build an object file
-strategy.c.o:
-	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test-strategy.dir/build.make strategy/CMakeFiles/test-strategy.dir/strategy.c.o
-.PHONY : strategy.c.o
+strategy_random_basique.c.o:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_random_basique.dir/build.make strategy/CMakeFiles/test_strategy_random_basique.dir/strategy_random_basique.c.o
+.PHONY : strategy_random_basique.c.o
 
-strategy.i: strategy.c.i
-.PHONY : strategy.i
+strategy_random_basique.i: strategy_random_basique.c.i
+.PHONY : strategy_random_basique.i
 
 # target to preprocess a source file
-strategy.c.i:
-	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test-strategy.dir/build.make strategy/CMakeFiles/test-strategy.dir/strategy.c.i
-.PHONY : strategy.c.i
+strategy_random_basique.c.i:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_random_basique.dir/build.make strategy/CMakeFiles/test_strategy_random_basique.dir/strategy_random_basique.c.i
+.PHONY : strategy_random_basique.c.i
 
-strategy.s: strategy.c.s
-.PHONY : strategy.s
+strategy_random_basique.s: strategy_random_basique.c.s
+.PHONY : strategy_random_basique.s
 
 # target to generate assembly for a file
-strategy.c.s:
-	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test-strategy.dir/build.make strategy/CMakeFiles/test-strategy.dir/strategy.c.s
-.PHONY : strategy.c.s
+strategy_random_basique.c.s:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_random_basique.dir/build.make strategy/CMakeFiles/test_strategy_random_basique.dir/strategy_random_basique.c.s
+.PHONY : strategy_random_basique.c.s
 
-test-strategy.o: test-strategy.c.o
-.PHONY : test-strategy.o
+test_strategy_efficient.o: test_strategy_efficient.c.o
+.PHONY : test_strategy_efficient.o
 
 # target to build an object file
-test-strategy.c.o:
-	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test-strategy.dir/build.make strategy/CMakeFiles/test-strategy.dir/test-strategy.c.o
-.PHONY : test-strategy.c.o
+test_strategy_efficient.c.o:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_efficient.dir/build.make strategy/CMakeFiles/test_strategy_efficient.dir/test_strategy_efficient.c.o
+.PHONY : test_strategy_efficient.c.o
 
-test-strategy.i: test-strategy.c.i
-.PHONY : test-strategy.i
+test_strategy_efficient.i: test_strategy_efficient.c.i
+.PHONY : test_strategy_efficient.i
 
 # target to preprocess a source file
-test-strategy.c.i:
-	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test-strategy.dir/build.make strategy/CMakeFiles/test-strategy.dir/test-strategy.c.i
-.PHONY : test-strategy.c.i
+test_strategy_efficient.c.i:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_efficient.dir/build.make strategy/CMakeFiles/test_strategy_efficient.dir/test_strategy_efficient.c.i
+.PHONY : test_strategy_efficient.c.i
 
-test-strategy.s: test-strategy.c.s
-.PHONY : test-strategy.s
+test_strategy_efficient.s: test_strategy_efficient.c.s
+.PHONY : test_strategy_efficient.s
 
 # target to generate assembly for a file
-test-strategy.c.s:
-	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test-strategy.dir/build.make strategy/CMakeFiles/test-strategy.dir/test-strategy.c.s
-.PHONY : test-strategy.c.s
+test_strategy_efficient.c.s:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_efficient.dir/build.make strategy/CMakeFiles/test_strategy_efficient.dir/test_strategy_efficient.c.s
+.PHONY : test_strategy_efficient.c.s
+
+test_strategy_fast.o: test_strategy_fast.c.o
+.PHONY : test_strategy_fast.o
+
+# target to build an object file
+test_strategy_fast.c.o:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_fast.dir/build.make strategy/CMakeFiles/test_strategy_fast.dir/test_strategy_fast.c.o
+.PHONY : test_strategy_fast.c.o
+
+test_strategy_fast.i: test_strategy_fast.c.i
+.PHONY : test_strategy_fast.i
+
+# target to preprocess a source file
+test_strategy_fast.c.i:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_fast.dir/build.make strategy/CMakeFiles/test_strategy_fast.dir/test_strategy_fast.c.i
+.PHONY : test_strategy_fast.c.i
+
+test_strategy_fast.s: test_strategy_fast.c.s
+.PHONY : test_strategy_fast.s
+
+# target to generate assembly for a file
+test_strategy_fast.c.s:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_fast.dir/build.make strategy/CMakeFiles/test_strategy_fast.dir/test_strategy_fast.c.s
+.PHONY : test_strategy_fast.c.s
+
+test_strategy_random_basique.o: test_strategy_random_basique.c.o
+.PHONY : test_strategy_random_basique.o
+
+# target to build an object file
+test_strategy_random_basique.c.o:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_random_basique.dir/build.make strategy/CMakeFiles/test_strategy_random_basique.dir/test_strategy_random_basique.c.o
+.PHONY : test_strategy_random_basique.c.o
+
+test_strategy_random_basique.i: test_strategy_random_basique.c.i
+.PHONY : test_strategy_random_basique.i
+
+# target to preprocess a source file
+test_strategy_random_basique.c.i:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_random_basique.dir/build.make strategy/CMakeFiles/test_strategy_random_basique.dir/test_strategy_random_basique.c.i
+.PHONY : test_strategy_random_basique.c.i
+
+test_strategy_random_basique.s: test_strategy_random_basique.c.s
+.PHONY : test_strategy_random_basique.s
+
+# target to generate assembly for a file
+test_strategy_random_basique.c.s:
+	cd /Users/damien/Documents/L2S2/ProjetProg/build && $(MAKE) -f strategy/CMakeFiles/test_strategy_random_basique.dir/build.make strategy/CMakeFiles/test_strategy_random_basique.dir/test_strategy_random_basique.c.s
+.PHONY : test_strategy_random_basique.c.s
 
 # Help Target
 help:
@@ -285,7 +373,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... test-strategy"
+	@echo "... test_strategy_efficient"
+	@echo "... test_strategy_fast"
+	@echo "... test_strategy_random_basique"
 	@echo "... A4_parpaite_seegers_legarrec_efficient.o"
 	@echo "... A4_parpaite_seegers_legarrec_efficient.i"
 	@echo "... A4_parpaite_seegers_legarrec_efficient.s"
@@ -295,12 +385,18 @@ help:
 	@echo "... __/grid/grid.o"
 	@echo "... __/grid/grid.i"
 	@echo "... __/grid/grid.s"
-	@echo "... strategy.o"
-	@echo "... strategy.i"
-	@echo "... strategy.s"
-	@echo "... test-strategy.o"
-	@echo "... test-strategy.i"
-	@echo "... test-strategy.s"
+	@echo "... strategy_random_basique.o"
+	@echo "... strategy_random_basique.i"
+	@echo "... strategy_random_basique.s"
+	@echo "... test_strategy_efficient.o"
+	@echo "... test_strategy_efficient.i"
+	@echo "... test_strategy_efficient.s"
+	@echo "... test_strategy_fast.o"
+	@echo "... test_strategy_fast.i"
+	@echo "... test_strategy_fast.s"
+	@echo "... test_strategy_random_basique.o"
+	@echo "... test_strategy_random_basique.i"
+	@echo "... test_strategy_random_basique.s"
 .PHONY : help
 
 

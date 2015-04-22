@@ -152,19 +152,6 @@ playGraph/fast:
 .PHONY : playGraph/fast
 
 #=============================================================================
-# Target rules for targets named strategy
-
-# Build rule for target.
-strategy: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 strategy
-.PHONY : strategy
-
-# fast build rule for target.
-strategy/fast:
-	$(MAKE) -f CMakeFiles/strategy.dir/build.make CMakeFiles/strategy.dir/build
-.PHONY : strategy/fast
-
-#=============================================================================
 # Target rules for targets named test_grid
 
 # Build rule for target.
@@ -204,17 +191,43 @@ A4_parpaite_seegers_legarrec_fast/fast:
 .PHONY : A4_parpaite_seegers_legarrec_fast/fast
 
 #=============================================================================
-# Target rules for targets named test-strategy
+# Target rules for targets named test_strategy_efficient
 
 # Build rule for target.
-test-strategy: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test-strategy
-.PHONY : test-strategy
+test_strategy_efficient: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_strategy_efficient
+.PHONY : test_strategy_efficient
 
 # fast build rule for target.
-test-strategy/fast:
-	$(MAKE) -f strategy/CMakeFiles/test-strategy.dir/build.make strategy/CMakeFiles/test-strategy.dir/build
-.PHONY : test-strategy/fast
+test_strategy_efficient/fast:
+	$(MAKE) -f strategy/CMakeFiles/test_strategy_efficient.dir/build.make strategy/CMakeFiles/test_strategy_efficient.dir/build
+.PHONY : test_strategy_efficient/fast
+
+#=============================================================================
+# Target rules for targets named test_strategy_fast
+
+# Build rule for target.
+test_strategy_fast: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_strategy_fast
+.PHONY : test_strategy_fast
+
+# fast build rule for target.
+test_strategy_fast/fast:
+	$(MAKE) -f strategy/CMakeFiles/test_strategy_fast.dir/build.make strategy/CMakeFiles/test_strategy_fast.dir/build
+.PHONY : test_strategy_fast/fast
+
+#=============================================================================
+# Target rules for targets named test_strategy_random_basique
+
+# Build rule for target.
+test_strategy_random_basique: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_strategy_random_basique
+.PHONY : test_strategy_random_basique
+
+# fast build rule for target.
+test_strategy_random_basique/fast:
+	$(MAKE) -f strategy/CMakeFiles/test_strategy_random_basique.dir/build.make strategy/CMakeFiles/test_strategy_random_basique.dir/build
+.PHONY : test_strategy_random_basique/fast
 
 grid/grid.o: grid/grid.c.o
 .PHONY : grid/grid.o
@@ -294,30 +307,6 @@ playGraph.c.s:
 	$(MAKE) -f CMakeFiles/playGraph.dir/build.make CMakeFiles/playGraph.dir/playGraph.c.s
 .PHONY : playGraph.c.s
 
-strategy/strategy.o: strategy/strategy.c.o
-.PHONY : strategy/strategy.o
-
-# target to build an object file
-strategy/strategy.c.o:
-	$(MAKE) -f CMakeFiles/strategy.dir/build.make CMakeFiles/strategy.dir/strategy/strategy.c.o
-.PHONY : strategy/strategy.c.o
-
-strategy/strategy.i: strategy/strategy.c.i
-.PHONY : strategy/strategy.i
-
-# target to preprocess a source file
-strategy/strategy.c.i:
-	$(MAKE) -f CMakeFiles/strategy.dir/build.make CMakeFiles/strategy.dir/strategy/strategy.c.i
-.PHONY : strategy/strategy.c.i
-
-strategy/strategy.s: strategy/strategy.c.s
-.PHONY : strategy/strategy.s
-
-# target to generate assembly for a file
-strategy/strategy.c.s:
-	$(MAKE) -f CMakeFiles/strategy.dir/build.make CMakeFiles/strategy.dir/strategy/strategy.c.s
-.PHONY : strategy/strategy.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -329,12 +318,13 @@ help:
 	@echo "... play"
 	@echo "... playGraph"
 	@echo "... rebuild_cache"
-	@echo "... strategy"
 	@echo "... test"
 	@echo "... test_grid"
 	@echo "... A4_parpaite_seegers_legarrec_efficient"
 	@echo "... A4_parpaite_seegers_legarrec_fast"
-	@echo "... test-strategy"
+	@echo "... test_strategy_efficient"
+	@echo "... test_strategy_fast"
+	@echo "... test_strategy_random_basique"
 	@echo "... grid/grid.o"
 	@echo "... grid/grid.i"
 	@echo "... grid/grid.s"
@@ -344,9 +334,6 @@ help:
 	@echo "... playGraph.o"
 	@echo "... playGraph.i"
 	@echo "... playGraph.s"
-	@echo "... strategy/strategy.o"
-	@echo "... strategy/strategy.i"
-	@echo "... strategy/strategy.s"
 .PHONY : help
 
 

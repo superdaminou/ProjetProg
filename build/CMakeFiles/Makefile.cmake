@@ -57,9 +57,10 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/grid.dir/DependInfo.cmake"
   "CMakeFiles/play.dir/DependInfo.cmake"
   "CMakeFiles/playGraph.dir/DependInfo.cmake"
-  "CMakeFiles/strategy.dir/DependInfo.cmake"
   "test/CMakeFiles/test_grid.dir/DependInfo.cmake"
   "strategy/CMakeFiles/A4_parpaite_seegers_legarrec_efficient.dir/DependInfo.cmake"
   "strategy/CMakeFiles/A4_parpaite_seegers_legarrec_fast.dir/DependInfo.cmake"
-  "strategy/CMakeFiles/test-strategy.dir/DependInfo.cmake"
+  "strategy/CMakeFiles/test_strategy_efficient.dir/DependInfo.cmake"
+  "strategy/CMakeFiles/test_strategy_fast.dir/DependInfo.cmake"
+  "strategy/CMakeFiles/test_strategy_random_basique.dir/DependInfo.cmake"
   )
