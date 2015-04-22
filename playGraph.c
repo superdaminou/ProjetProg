@@ -1,13 +1,14 @@
 #include "grid.h"
-/*
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
-*/
-//Pour architecture MAC, il faut réaliser les include suivant
+
+/* Pour architecture MAC, il faut réaliser les include suivant
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <SDL2_ttf/SDL_ttf.h>
+*/
 
 // Affichage de la grille et du score (version basique à améliorer)
 
@@ -189,13 +190,13 @@ void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL
     
     // si game over affichage specifique
     if (game_over(g)){
-        snprintf(c,taillechar,"Game over ! score: %d to restart press R",score);
+        snprintf(c,taillechar,"Game Over | Score : %d | Press R to restart",score);
         taille.w=400;
     }
     
     //sinon juste affichage du score
     else{
-        snprintf(c,taillechar,"Press A for autoplay! score: %d",score);
+        snprintf(c,taillechar,"Score : %d",score);
         taille.w=400;
     }
     
