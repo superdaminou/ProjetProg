@@ -1,5 +1,11 @@
-add_executable(test-strategy strategy.c test-strategy.c ../grid/grid.c)
-target_link_libraries(test-strategy m)
+add_executable(test_strategy_random_basique strategy_random_basique.c test_strategy_random_basique.c ../grid/grid.c)
+target_link_libraries(test_strategy_random_basique m)
+
+add_executable(test_strategy_fast A4_parpaite_seegers_legarrec_fast.c test_strategy_fast.c ../grid/grid.c)
+target_link_libraries(test_strategy_fast m)
+
+add_executable(test_strategy_efficient A4_parpaite_seegers_legarrec_efficient.c test_strategy_efficient.c ../grid/grid.c)
+target_link_libraries(test_strategy_efficient m)
 
 add_library(A4_parpaite_seegers_legarrec_fast SHARED A4_parpaite_seegers_legarrec_fast.c)
 add_library(A4_parpaite_seegers_legarrec_efficient SHARED A4_parpaite_seegers_legarrec_efficient.c)

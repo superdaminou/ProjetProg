@@ -2,6 +2,10 @@
 #include "stdlib.h"
 #include "math.h"
 
+strategy A4_parpaite_seegers_legarrec_random();
+strategy A4_parpaite_seegers_legarrec_basique();
+void free_strategy(strategy);
+
 void display_separator() {
 	for (int i = 0 ; i < GRID_SIDE ; i++)
 		printf("+———————");
@@ -64,26 +68,9 @@ int main() {
     }
   }
   display(g2);
+  free_strategy(s2);
+  free_memless_strat(s2);
   delete_grid(g2);
   
   printf("[Fin du test basique]\n");
-
-
-  printf("[Début du test fast]\n");
-  grid g3 = new_grid();
-  add_tile(g3);
-  add_tile(g3);
-  display(g3);
-  strategy s3 = A4_parpaite_seegers_legarrec_fast();
-  while(!game_over(g3)) {
-	  dir d = s3->play_move(s3, g3);
-	  if (can_move(g3, d)) {
-		  play(g3, d);
-		  printf("Score : %d\n", grid_score(g3));
-	  }
-  }
-  display(g3);
-  delete_grid(g3);
-  
-  printf("[Fin du test fast]\n");
 }
