@@ -130,7 +130,7 @@ void drawGrid(SDL_Renderer *renderer){
 }
 
 void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL_Surface * message,grid g ){
-    size_t taillechar=15;
+    size_t taillechar=35;
     char c [taillechar];
     
     SDL_Rect taille;
@@ -159,7 +159,7 @@ void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL
     int score=grid_score(g);
     
     if (game_over(g)){
-        snprintf(c,taillechar,"Game over ! score : %d",score);
+        snprintf(c,taillechar,"Game over ! score: %d",score);
     }
     else{
         snprintf(c,taillechar,"score: %d",score);
