@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../grid/grid.h
+stdbool.h
+-
+stdlib.h
+-
+stdio.h
+-
+assert.h
+-
+time.h
+-
+math.h
+-
+
+/Users/damien/Documents/L2S2/ProjetProg/grid/grid.c
+grid.h
+/Users/damien/Documents/L2S2/ProjetProg/grid/grid.h
+
+/Users/damien/Documents/L2S2/ProjetProg/grid/grid.h
+stdbool.h
+-
+stdlib.h
+-
+stdio.h
+-
+assert.h
+-
+time.h
+-
+math.h
+-
+
+/Users/damien/Documents/L2S2/ProjetProg/play.c
+grid.h
+/Users/damien/Documents/L2S2/ProjetProg/grid.h
+

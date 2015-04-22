@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../grid/grid.h
+stdbool.h
+-
+stdlib.h
+-
+stdio.h
+-
+assert.h
+-
+time.h
+-
+math.h
+-
+
+/Users/damien/Documents/L2S2/ProjetProg/strategy/A4_parpaite_seegers_legarrec_efficient.c
+strategy.h
+/Users/damien/Documents/L2S2/ProjetProg/strategy/strategy.h
+stdlib.h
+/Users/damien/Documents/L2S2/ProjetProg/strategy/stdlib.h
+
+/Users/damien/Documents/L2S2/ProjetProg/strategy/strategy.h
+grid.h
+/Users/damien/Documents/L2S2/ProjetProg/strategy/grid.h
+

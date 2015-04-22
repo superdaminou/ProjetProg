@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../grid/grid.h
+stdbool.h
+-
+stdlib.h
+-
+stdio.h
+-
+assert.h
+-
+time.h
+-
+math.h
+-
+
+/Users/damien/Documents/L2S2/ProjetProg/playGraph.c
+grid.h
+/Users/damien/Documents/L2S2/ProjetProg/grid.h
+SDL2/SDL.h
+-
+SDL2_image/SDL_image.h
+-
+SDL2_ttf/SDL_ttf.h
+-
+
