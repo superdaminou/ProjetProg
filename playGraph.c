@@ -3,6 +3,12 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
+/* Pour architecture MAC, il faut réaliser les include suivant
+#include <SDL2/SDL.h>
+#include <SDL2_image/SDL_image.h>
+#include <SDL2_ttf/SDL_ttf.h>
+*/
+
 // Affichage de la grille et du score (version basique à améliorer)
 
 void drawGrid(SDL_Renderer *renderer);
