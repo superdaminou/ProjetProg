@@ -1,1 +1,0 @@
-/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/test_grid.dir/test_grid.c.o CMakeFiles/test_grid.dir/__/grid/grid.c.o  -o test_grid  -lm 

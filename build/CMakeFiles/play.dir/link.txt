@@ -1,1 +1,0 @@
-/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/play.dir/play.c.o CMakeFiles/play.dir/grid/grid.c.o  -o play  -lm 
