@@ -113,8 +113,9 @@ int main()
         SDL_SetRenderDrawColor(renderer, 255,255,255,255);
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, 255,255,255,255);
-        drawGrid(renderer);
+        
         actualiser(renderer,font,texture,message,g,screen);
+        drawGrid(renderer);
         SDL_RenderPresent(renderer);
         
 
@@ -151,19 +152,27 @@ void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL
         {
             if (get_tile(g,i,j)!=0)
             {
+                taille.x=i*640/GRID_SIDE;
+                taille.y=j*640/GRID_SIDE;
                 
-            int n=pow(2,get_tile(g,i,j));
-            SDL_Color couleur_rectangle={n,0,0};
-            snprintf(c,taillechar, "%d",n);
+                int n=pow(2,get_tile(g,i,j));
+                snprintf(c,taillechar, "%d",n);
+            
                 
-            SDL_FillRect(screen, &taille, SDL_MapRGB(screen->format, 0x00, 0x00, 0x00));
                 
-            message = TTF_RenderText_Solid( font, c, textColor );
-            texture = SDL_CreateTextureFromSurface(renderer,message);
-            taille.x=i*640/GRID_SIDE;
-            taille.y=j*640/GRID_SIDE;
-            SDL_RenderCopy(renderer,texture, NULL,&taille);
-            SDL_DestroyTexture(texture);
+                SDL_SetRenderDrawColor( renderer, 255,  255-(255*(get_tile(g,i,j)/16.0)), 255-(255*(get_tile(g,i,j)/16.0)), 255 );
+                
+                // Render rect
+                SDL_RenderFillRect( renderer, &taille );
+                
+                // Render the rect to the screen
+                //SDL_RenderPresent(renderer);
+                
+                message = TTF_RenderText_Solid( font, c, textColor );
+                texture = SDL_CreateTextureFromSurface(renderer,message);
+            
+                SDL_RenderCopy(renderer,texture, NULL,&taille);
+                SDL_DestroyTexture(texture);
                 SDL_FreeSurface(message);
             }
             
