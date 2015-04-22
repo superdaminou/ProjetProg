@@ -7,14 +7,14 @@
 
 void drawGrid(SDL_Renderer *renderer);
 
-void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL_Surface * message,grid g ,SDL_Surface *screen);
+void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL_Surface * message,grid g);
 
-void auto_play(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL_Surface * message,grid g,SDL_Surface *screen);
+void auto_play(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL_Surface * message,grid g);
 
 void afficherScore(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL_Surface * message,grid g );
 
-SDL_Color couleur = {255, 255, 255};
 SDL_Color textColor = { 0, 0, 0 };
+
 int fenetretaille=640;
 
 
@@ -41,7 +41,6 @@ int main()
     
     
     SDL_Surface *message = NULL;
-    SDL_Surface *screen = NULL;
     
     
     SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer,
@@ -76,7 +75,7 @@ int main()
                         run=false;
                         break;
                     case 'a':
-                        auto_play(renderer,font,texture,message,g,screen);
+                        auto_play(renderer,font,texture,message,g);
                         break;
                     
                     case 'r':
@@ -114,22 +113,26 @@ int main()
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, 255,255,255,255);
         
-        actualiser(renderer,font,texture,message,g,screen);
+        actualiser(renderer,font,texture,message,g);
         drawGrid(renderer);
+        
         SDL_RenderPresent(renderer);
         
 
     }
     
+    SDL_DestroyTexture(texture);
+    SDL_FreeSurface(message);
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
+    TTF_Quit();
     SDL_Quit();
     printf("Score final : %lu\n", grid_score(g));
     return EXIT_SUCCESS;
 }
 
 
-
+// dessin de la grille de jeu
 void drawGrid(SDL_Renderer *renderer){
     for (int i=0; i<=640; i+=640/GRID_SIDE){
         SDL_SetRenderDrawColor(renderer, 0,0,0,255);
@@ -138,7 +141,7 @@ void drawGrid(SDL_Renderer *renderer){
     }
 }
 
-void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL_Surface * message,grid g,SDL_Surface *screen ){
+void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL_Surface * message,grid g ){
     size_t taillechar=50;
     char c [taillechar];
     
@@ -159,15 +162,13 @@ void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL
                 snprintf(c,taillechar, "%d",n);
             
                 
-                
+                // affichage des rectangle de couleur pour les tuiles
                 SDL_SetRenderDrawColor( renderer, 255,  255-(255*(get_tile(g,i,j)/16.0)), 255-(255*(get_tile(g,i,j)/16.0)), 255 );
                 
                 // Render rect
                 SDL_RenderFillRect( renderer, &taille );
                 
-                // Render the rect to the screen
-                //SDL_RenderPresent(renderer);
-                
+                // affichage du "niveau" de la tuile
                 message = TTF_RenderText_Solid( font, c, textColor );
                 texture = SDL_CreateTextureFromSurface(renderer,message);
             
@@ -180,14 +181,19 @@ void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL
     }
     int score=grid_score(g);
     
+    // si game over affichage specifique
     if (game_over(g)){
         snprintf(c,taillechar,"Game over ! score: %d to restart press R",score);
         taille.w=400;
     }
+    
+    //sinon juste affichage du score
     else{
         snprintf(c,taillechar,"score: %d",score);
         taille.w=150;
     }
+    
+    //affichage du message
     message =TTF_RenderText_Solid(font,c,textColor);
     texture = SDL_CreateTextureFromSurface(renderer,message);
     taille.h=50;
@@ -201,7 +207,7 @@ void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL
     
     
 }
-void auto_play (SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL_Surface * message,grid g,SDL_Surface *screen)
+void auto_play (SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL_Surface * message,grid g)
 {
     dir t[] = {UP, DOWN, LEFT, RIGHT};
     int i = 0;
@@ -209,7 +215,7 @@ void auto_play (SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL
         i = rand()%4;
         if (can_move(g, t[i]))
             play(g, t[i]);
-        actualiser(renderer,font,texture,message,g,screen);
+        actualiser(renderer,font,texture,message,g);
     }
 }
 
