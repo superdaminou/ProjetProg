@@ -1,14 +1,14 @@
 #include "grid.h"
-
+/*
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
-
-/*Pour architecture MAC, il faut réaliser les include suivant
+*/
+//Pour architecture MAC, il faut réaliser les include suivant
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <SDL2_ttf/SDL_ttf.h>
-*/
+
 // Affichage de la grille et du score (version basique à améliorer)
 
 void drawGrid(SDL_Renderer *renderer);
@@ -43,7 +43,7 @@ int main()
     
     TTF_Init();
     TTF_Font *font = NULL;
-    font = TTF_OpenFont( "../Ressource/chunkfive.ttf", 28 );
+    font = TTF_OpenFont( "../ressources/chunkfive.ttf", 28 );
     
     
     SDL_Surface *message = NULL;
@@ -195,8 +195,8 @@ void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL
     
     //sinon juste affichage du score
     else{
-        snprintf(c,taillechar,"score: %d",score);
-        taille.w=150;
+        snprintf(c,taillechar,"Press A for autoplay! score: %d",score);
+        taille.w=400;
     }
     
     //affichage du message
@@ -204,7 +204,7 @@ void actualiser(SDL_Renderer *renderer,TTF_Font * font,SDL_Texture * texture,SDL
     texture = SDL_CreateTextureFromSurface(renderer,message);
     taille.h=50;
     
-    taille.x=fenetretaille/2-100;
+    taille.x=fenetretaille/2-200;
     taille.y=fenetretaille;
     SDL_RenderCopy(renderer,texture, NULL,&taille);
     SDL_DestroyTexture(texture);
