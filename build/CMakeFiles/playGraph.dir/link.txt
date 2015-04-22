@@ -1,1 +1,1 @@
-/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/playGraph.dir/playGraph.c.o CMakeFiles/playGraph.dir/grid/grid.c.o  -o playGraph  -lm -lSDL2 -lSDL2 -lSDL2_ttf 
+/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/playGraph.dir/playGraph.c.o CMakeFiles/playGraph.dir/grid/grid.c.o  -o playGraph  -lm -lSDL2 -lSDL2_ttf 

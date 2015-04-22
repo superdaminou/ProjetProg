@@ -1,2 +1,0 @@
-/usr/bin/ar cr libstrategy.a  CMakeFiles/strategy.dir/strategy/strategy.c.o
-/usr/bin/ranlib libstrategy.a

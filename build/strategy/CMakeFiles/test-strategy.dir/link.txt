@@ -1,1 +1,0 @@
-/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/test-strategy.dir/strategy.c.o CMakeFiles/test-strategy.dir/test-strategy.c.o CMakeFiles/test-strategy.dir/__/grid/grid.c.o  -o test-strategy  -lm 
